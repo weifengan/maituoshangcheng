@@ -1,0 +1,1701 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+	<!doctype html>
+	<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>迈拓商城_电子元器件采购网上商城_被动元器件全线代理直供平台</title>
+		<meta name="description" content="迈拓商城是一家国内外200多家品牌授权代理合作的电子元器件商城，拥有1000多平方米的自营现货仓库，全面满足客户紧缺物料、小批量、样品申请等采购需求。" />
+		<meta name="keywords" content="电子元器件采购网,电子元器件网上商城,电子元器件,电子元件,电子商城,电子元器件现货网站,元器件平台,元器件采购平台,电子器件批发" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="renderer" content="webkit">
+		<meta name="applicable-device" content="pc">
+		<link type="text/css" rel="stylesheet" href="<?=base_url()?>static/index/css/style.css" />
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery.form.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/layer.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/validate.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/common.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/big.decimal.js"></script>
+	</head>
+
+	<body>
+		<div class="header-top">
+			<div class="wraper clear">
+				<p class="fl">
+					<span>您好！欢迎来到迈拓恒科商城！</span> &nbsp;&nbsp;
+					<a href="<?=site_url()?>index/login/" top-bar-login-user rel="nofollow">登录</a>
+					&nbsp;
+					<span class="fs-10 text-muted">&nbsp;|&nbsp;</span> &nbsp;
+					<a href="<?=site_url()?>index/register" top-bar-register-user rel="nofollow">注册</a>
+				</p>
+				<div class="fr">
+					<a class="text-link" href="/account/order/list.html" rel="nofollow">
+						<i class="fs-14 iconfont icon-order"></i>&nbsp;我的订单
+					</a>
+					<span class="fs-10 text-muted">&nbsp;|&nbsp;</span>
+					<a class="text-link" href="/account/index.html" rel="nofollow">
+						<i class="fs-14 iconfont icon-renyuan"></i>&nbsp;会员中心
+					</a>
+					<span class="fs-10 text-muted">&nbsp;|&nbsp;</span>
+					<a class="text-link" class="ml10" target="_blank" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" rel="nofollow">
+						<i class="fs-14 iconfont icon-qq"></i>&nbsp;在线客服
+					</a>
+					<span class="text-primary ml10">客服电话：400-870-9968</span>
+					<span class="text-primary ml10">服务时间：8:30-17:30</span>
+				</div>
+			</div>
+		</div>
+
+		<div id="header" class="l-header">
+			<div class="header clear" id="headerCon">
+				<h1 class="logo">
+            <a href="<?=site_url()?>/index/home/" title="迈拓恒科">
+                <img class="logo__img" height="50" alt="迈拓恒科" src="<?=base_url()?>static/index/picture/head-logo.png" style="height: 50px;width: auto;">
+                <span class="logo__wrd">|&nbsp;&nbsp;一站式网络采购平台</span>
+            </a>
+        </h1>
+				<a href="<?=site_url()?>/index/cart" class="scart">
+					<i class="iconfont icon-gouwuche"></i> 购物车
+					<span id="shopCartNum">(0)</span>
+				</a>
+
+				<!--所有框-->
+				<div class="search">
+					<form id="headSrhFrm" action="#" onsubmit="return validateForm(this)">
+						<div class="srhFrm">
+							<input class="srhFrm__inp fl" id="nav-keyword" value="" name="keyword" autocomplete="off" placeholder="请输入型号或产品相关信息" type="text">
+							<button class="srhFrm__sub" value="" type="button" id="submit_search"><i class="iconfont icon-sou"></i>&nbsp;搜索</button>
+						</div>
+						<div class="srhKeys">
+							<a class="text-warning" href="/tech_article/39.html">KMET系列电容</a>
+							<a href="javascript:void(0)" class="searchKeyword" keyword="TAJD226K035RNJ">TAJD226K035RNJ</a>
+							<a class="text-warning" href="/page/nov_activity.html">SDN测试key</a>
+							<a href="javascript:void(0)" class="searchKeyword" keyword="0402 100V">0402 100V</a>
+						</div>
+					</form>
+					<div style="display: none">
+						<form action="/search.html" id="search-log-form">
+							<input name="keyword">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="fixedheader" class="is-fixtop l-header"></div>
+		<div class="l-nav ">
+			<div class="nav">
+				<div class="clear">
+					<div id="allNav" class="allNav fl mr10 is-hover">
+						<h3 class="allNav__cap">
+                    <i class="iconfont icon-menu"></i>产品分类
+                </h3>
+						<div class="allNav__con">
+
+             <?php
+						     foreach($catelist as $item)
+							 	{
+						 ?>
+										<div class="allNav-lv1">
+										 <a href="/search/product?categoryId=1207" class="allNav-lv1__cap">
+											 <i class="iconfont <?=$item->icon?>"></i> <?=$item->title;?>
+										 </a>
+
+										 <div class="allNav-lv2">
+		 									<ul class="allNav-lv2__ul">
+												<?php
+												foreach ($item->children as $key => $value){
+												?>
+		 										<li>
+		 											<a href="/search/product?categoryId=1219"><?=$value->title?></a>
+		 										</li>
+		 								 		<?php } ?>
+		 									</ul>
+		 								</div>
+
+ 									</div>
+						  <?php
+							   }
+							 ?>
+
+
+							<a class="allNav-more" href="/category">查看全部分类&nbsp;&nbsp;<i class="iconfont icon-triangle--rgtBd"></i></a>
+						</div>
+					</div>
+					<span menu-itm-active-class>
+                <a class="navItem" href="./">首页</a>
+                <a class="navItem is-hot" href="/search/product.html">商品目录</a>
+                <a class="navItem" href="/category">商品目录</a>
+                <a class="navItem" href="/brand/list.html">品牌专区</a>
+                <a class="navItem is-hot" href="/sample/product/list.html">免费拿样</a>
+            </span>
+				</div>
+			</div>
+		</div>
+		<script>
+			// 计算购物车数量
+			function countCart() {
+
+				data = 2;
+				$("#shopCartNum").text("(10)");
+				if(data > 0) {
+					$("[data-cartnum]").show().text("(22)");
+				}
+
+			}
+			$(function() {
+				addMenuItmActiveClass();
+				countCart();
+				//商品分类
+				var $allNav = $("#allNav")
+				$allNav.on("mouseover", function() {
+					$(this).addClass("is-hover")
+				})
+				$allNav.on("mouseleave", function() {
+					$(this).removeClass("is-hover")
+				})
+				$allNav.find(".allNav-lv1").on("mouseover", function(e) {
+					var $this = $(this)
+					var posTop = $this.position().top
+					var $lv2 = $this.find(".allNav-lv2")
+					$this.addClass("is-active")
+					if($lv2.outerHeight() > 486) { //402为菜单高度
+						$lv2.css({
+							"top": -posTop + "px"
+						})
+					} else if(posTop + $lv2.outerHeight() < 486) {
+						$lv2.css({
+							"top": "0px"
+						})
+					} else {
+						$lv2.css({
+							"top": (486 - $lv2.outerHeight() - posTop) + "px"
+						})
+					}
+					e.stopPropagation()
+				}).on("mouseleave", function() {
+					$(this).removeClass("is-active")
+				})
+
+				// 获取搜索推荐
+				function topSuggestion(getData, callback) {
+					var $input = $("#nav-keyword"),
+						$container = $("#srhSugges"),
+						cachedResponse = {},
+						$list = null,
+						index = -1,
+						oldKey = "",
+						allowEn = false,
+						getData = getData ? getData : function() {
+							return false;
+						},
+						callback = callback ? callback : function() {},
+						srhTimeOut = 0;
+
+					function hide() {
+						$container.hide();
+					}
+
+					function show() {
+						$container.show();
+					}
+
+					function render(data, key) {
+						var $ul = $("<ul></ul>");
+						data.length > 0 ? show() : hide();
+						$container.html("");
+						$container.append($ul);
+						for(var i = 0; i < data.length; i++) {
+							var $li = $("<li>" +
+								data[i].toString() +
+								"</li>");
+							$ul.append($li);
+							(function() {
+								$li.on("click", function() {
+									$input.val($(this).text());
+									if(callback) callback($(this).text());
+								});
+							})();
+						};
+						$list = $ul.find("li");
+					}
+
+					function sendSrh() {
+						var key = $input.val()
+						if(!Boolean(key) && key === oldKey) {
+							return false;
+						}
+						oldKey = key;
+						clearTimeout(srhTimeOut)
+						if(cachedResponse[key]) {
+							render(cachedResponse[key], key);
+						} else {
+							srhTimeOut = setTimeout(function() {
+								getData(function(data) {
+									cachedResponse[key] = data;
+									render(data, key);
+								});
+							}, 700)
+						}
+					}
+					$input.on("focus", function() {
+						sendSrh()
+					});
+					$input.on("blur", function() {
+						setTimeout(function() {
+							hide();
+						}, 300);
+					});
+					$input.on("keyup", function(e) {
+						var $this = $(this);
+						switch(e.keyCode) {
+							case 38:
+								index = index < 0 ? -1 : index - 1;
+								$list.eq(index + 1).removeClass("is-active");
+								index >= 0 ? (allowEn = true, $list.eq(index).addClass("is-active")) : allowEn = false;
+								return false;
+								break;
+							case 40:
+								index = index >= $list.length - 1 ? $list.length : index + 1;
+								$list.eq(index - 1).removeClass("is-active");
+								index <= $list.length - 1 ? (allowEn = true, $list.eq(index).addClass("is-active")) : allowEn = false;
+								return false;
+								break;
+							case 37:
+								return false;
+								break;
+							case 39:
+								return false;
+								break;
+							case 13:
+								if(allowEn) {
+									$input.val($list.eq(index).text());
+									index = -1;
+									hide();
+									oldKey = $this.val();
+									callback && callback($input.val());
+									return false;
+								} else {
+									return true;
+								}
+								break;
+							default:
+								sendSrh();
+						}
+					});
+				}
+				topSuggestion(function(callback) {
+					var keyword = {
+						"keyword": $("#nav-keyword").val()
+					};
+					var searchData = JSON.stringify(keyword);
+					$.ajax({
+						url: "http://soic.oneyac.com/search_suggest.html",
+						dataType: 'jsonp',
+						type: "get",
+						data: {
+							paramsDTO: searchData
+						},
+						success: function(data) {
+							callback(data);
+						}
+					})
+				}, function(val) {
+					// 表单提交
+					$("#headSrhFrm").submit();
+				});
+				//热搜点击 ==> a 标签链接： 在ie 浏览器 如果有中文参数会报 400 错误。改用form 表单提交
+				$(".searchKeyword").click(function() {
+					var keyword = $(this).attr("keyword");
+					$("#search-log-form").find("input").val(keyword);
+					$("#search-log-form").submit();
+				});
+			})
+
+			$("#submit_search").click(function() {
+				if(!validateForm) {
+					return;
+				} else {
+					$("#headSrhFrm").submit();
+				}
+
+			});
+
+			function validateForm() {
+				var keyword = $("#nav-keyword").val();
+				if(keyword == null || keyword.length < 2) {
+					layer.alert('搜索型号不能小于二个字符！', {
+						icon: 2
+					});
+					return false;
+				}
+			}
+
+			function getBrowserLocation() {
+				var currentUrl = "";
+				var urlSearch = document.location.search;
+				var urlPathName = document.location.pathname;
+				if(urlSearch == "") {
+					currentUrl = urlPathName;
+				} else {
+					currentUrl = urlPathName + urlSearch;
+				}
+				return currentUrl;
+			}
+
+			function addMenuItmActiveClass() {
+				var isAddClassActive = false;
+				var browserLocation = getBrowserLocation();
+
+				if(browserLocation == "" || browserLocation == "/" || browserLocation == "/index.html") {
+					$("[menu-itm-active-class]").find("a").eq(0).addClass("is-active");
+					return;
+				}
+				if(browserLocation == "/account/index" || browserLocation == "/account/index.html") {
+					return;
+				}
+
+				$("[menu-itm-active-class]").find("a").each(function(index, element) {
+					if($(element).attr("href") != '' && $(element).attr("href") == browserLocation) {
+						$(element).addClass("is-active");
+						isAddClassActive = true
+					}
+				});
+				if(!isAddClassActive) {
+					$("[menu-itm-active-class]").find("a").each(function(index, element) {
+						if($(element).attr("href") != '' && $(element).attr("href") == document.location.pathname) {
+							$(element).addClass("is-active");
+							isAddClassActive = true
+						}
+					});
+				}
+			}
+		</script>
+
+		<!-- 首页滚动图片-->
+		<div style="width:100%;overflow: hidden;">
+			<div class="floor--slider" style="position: relative;">
+				<div class="_l-center fl">
+					<div class="slider">
+						<div id="slider" class="slider-wrap">
+							<ul class="slider-con">
+								<a title="唯样获全球电子元器件分销商卓越表现奖" href="#" target="_blank">
+									<li class="slider-itm js-sildeItm" style="background-image: url('<?=base_url()?>/static/index/images/sliders/1542799180898_7307.jpg');"></li>
+								</a>
+								<a title="RS品牌精选特价" href="" target="_blank">
+									<li class="slider-itm js-sildeItm" style="background-image: url('<?=base_url()?>/static/index/images/sliders/1541809992004_5830.jpg');"></li>
+								</a>
+								<a title="11月钜惠返场" href="" target="_blank">
+									<li class="slider-itm js-sildeItm" style="background-image: url('<?=base_url()?>/static/index/images/sliders/1542081267773_6111.jpg');"></li>
+								</a>
+								<a title="RELAC限时特价" href="" target="_blank">
+									<li class="slider-itm js-sildeItm" style="background-image: url('<?=base_url()?>/static/index/images/sliders/1542275720189_0073.png');"></li>
+								</a>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="inx-uBox fr">
+					<div class="_login">
+						<div class="_lgWrp">
+							<div class="_via fl">
+								<img class="_via__img" src="<?=base_url()?>static/index/picture/user-default-056eaa2195f80c732943186aaaf0dc24.png" />
+								<img class="_via__wrp" src="<?=base_url()?>static/index/picture/inx-viawrap-0703.png" />
+							</div>
+							<span class="_userName">Hi~你好！</span>
+						</div>
+						<div class="text-center">
+							<a class="_btn" href="<?=site_url()?>/index/login/" rel="nofollow">登录</a>
+							<a class="_btn ml20" href="<?=site_url()?>/index/register" rel="nofollow">注册</a>
+						</div>
+					</div>
+					<div class="_lnks clear">
+						<a href="/account/order/list.html" class="_lnkItm" rel="nofollow">
+							<i class="iconfont icon-order _lnkIcn1"></i>
+							<span>我的订单</span>
+						</a>
+						<a class="_lnkItm" href="<?=site_url()?>/index/cart" rel="nofollow">
+							<i class="iconfont icon-gouwuche _lnkIcn2"></i>
+							<span>购物车</span>
+						</a>
+						<a class="_lnkItm" target="_blank" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" rel="nofollow">
+							<i class="iconfont icon-kefu _lnkIcn3"></i>
+							<span>在线客服</span>
+						</a>
+					</div>
+					<div class="_news">
+						<div class="clear mb10"> 新闻动态
+							<a href="/news/list/1.html" class="text-muted fr">更多</a>
+						</div>
+						<a class="_newsItm" href="/news/detail/5837.html" target="_blank">【活动】百万福利来返场，双十一后不吃土！</a>
+						<a class="_newsItm" href="/news/detail/5836.html" target="_blank">【动态】唯样牵手电源IC专业制造商TOREX，开启战略合作新篇章！</a>
+						<a class="_newsItm" href="/news/detail/5835.html" target="_blank">【动态】唯样荣获“全球电子元器件分销商卓越表现奖”</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="inx-agBrand">
+			<div class="wraper">
+				<div class="inxSecCap--ag">
+					<span class="inxSecCap--ag__mod"></span>
+					<span>&nbsp;&nbsp;/&nbsp;知名原厂，授权合作</span>
+					<a class="inxSecCap__more" href="/page/5.html" target="_blank">查看更多 <i class="iconfont icon-enter"></i></a>
+				</div>
+				<div class="inx-agWrap" id="inxAgScroll">
+					<ul class="inx-agList js-aglist">
+						<li>
+							<a class="inx-agItm" href="/brand/874.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-tdk.jpg" class="inx-agItm__img" />
+								<div class="inx-agItm__show">
+									<img src="<?=base_url()?>static/index/picture/inx-ag-logo-tdk.jpg" class="inx-agItm__logo" />
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-tdk.png" />
+									<span class="inx-agItm__title">唯样与TDK<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="inx-agItm" href="/brand/875.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-yageo.jpg" class="inx-agItm__img" />
+								<div class="inx-agItm__show">
+									<img src="<?=base_url()?>static/index/picture/inx-ag-logo-yageo.jpg" class="inx-agItm__logo" />
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-yageo.png" />
+									<span class="inx-agItm__title">唯样与YAGEO<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="inx-agItm" href="/brand/883.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-kemet.jpg" class="inx-agItm__img" />
+								<div class="inx-agItm__show">
+									<img src="<?=base_url()?>static/index/picture/inx-ag-logo-kemet.jpg" class="inx-agItm__logo" />
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-kemet.png" />
+									<span class="inx-agItm__title">唯样与KEMET<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="inx-agItm" href="/brand/994.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-rohm.jpg" class="inx-agItm__img" />
+								<div class="inx-agItm__show">
+									<img src="<?=base_url()?>static/index/picture/inx-ag-logo-rohm.png" style="margin-bottom: 4px;" class="inx-agItm__logo" />
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-rohm.png" />
+									<span class="inx-agItm__title">唯样与ROHM<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="inx-agItm" href="/brand/923.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-torex.jpg" class="inx-agItm__img">
+								<div class="inx-agItm__show">
+									<img src="<?=base_url()?>static/index/picture/inx-ag-logo-torex.png" style="margin-bottom: 4px;height: 25px;" class="inx-agItm__logo">
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="<?=base_url()?>static/picture/inxaghlogo-torex.png" src="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-torex.png" style="display: inline;">
+									<span class="inx-agItm__title">唯样与TOREX<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="inx-agItm" href="/brand/944.html" target="_blank">
+								<img src="<?=base_url()?>static/index/picture/inx-ag-show-tai.jpg" class="inx-agItm__img" />
+								<div class="inx-agItm__show">
+									<img width="120" src="<?=base_url()?>static/index/picture/inx-ag-logo-tai.png" class="inx-agItm__logo" />
+									<i class="iconfont icon-down"></i>
+								</div>
+								<div class="inx-agItm__hide">
+									<img class="lazy inx-agItm__hLogo" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inxAgHLogo-tai.png" />
+									<span class="inx-agItm__title">唯样与台庆<i class="iconfont icon-up"></i></span>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="inx-agPage js-agpage"></div>
+				</div>
+			</div>
+		</div>
+		<div class="floor" floor-id='zyjx'>
+			<div class="wraper">
+				<div class="inxSecCap">
+					<span class="inxSecCap__mod">自营精选</span>
+					<span>&nbsp;&nbsp;/&nbsp; 小批量现货，快速交付</span>
+				</div>
+				<div class="clear">
+					<div class="floor-banner--zy fl">
+						<div class="floor-banner__lnks">
+							<a href="/brand/874.html">TDK</a>
+							<a href="/brand/935.html">旺诠</a>
+							<a href="/brand/875.html">国巨</a>
+							<a href="/brand/883.html">基美</a>
+							<a href="/brand/965.html">京瓷</a>
+							<a href="/brand/894.html">三星</a>
+							<a href="/brand/961.html">SiTime</a>
+							<a href="/brand/892.html">AVX</a>
+							<a href="/brand/878.html">松下</a>
+							<a href="/brand/922.html">VISHAY</a>
+							<a href="/brand/925.html">DIODES</a>
+							<a href="/brand/923.html">TOREX</a>
+						</div>
+						<a href="/"><img class="lazy" height="441" width="274" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inx-floor-img-zy.jpg?0914"></a>
+					</div>
+					<ul class="floor-grid fr">
+						<li>
+							<a class="proShItm" href="/product/318250.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254999970_6670.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">TAJA106K010RNJ</p>
+									<p class="text-ellipsis" title="钽电容器">钽电容器</p>
+									<p class="text-danger mt5">￥0.8925</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:AVX</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/241597.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1513326344948_6562.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">LESD8D5.0CT5G</p>
+									<p class="text-ellipsis" title="二极管与整流器">二极管与整流器</p>
+									<p class="text-danger mt5">￥0.05</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:LRC</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/273142.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/attachments/files/5A/E5/5a4e536660f225f3570094e2388e4ea3.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">RC0805JR-070RL</p>
+									<p class="text-ellipsis" title="SMD电阻器/芯片电阻器">SMD电阻器/芯片电阻器</p>
+									<p class="text-danger mt5">￥0.0166</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:YAGEO</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/261687.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/attachments/files/A3/A0/a39a0e5571195f24367629493a9d689c.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">CC0603KRX7R9BB104</p>
+									<p class="text-ellipsis" title="SMD/SMT 100nF 50V X7R 10%">SMD/SMT 100nF 50V X7R 10%</p>
+									<p class="text-danger mt5">￥0.084</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:YAGEO</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/321401.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1513326136007_8444.png" />
+								<div class="proShItm__info">
+									<p class="text-bold">B32923C3105K</p>
+									<p class="text-ellipsis" title=""></p>
+									<p class="text-danger mt5">￥4.59576</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:EPCOS / TDK</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/271569.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1513328358160_8474.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">AXE640124D</p>
+									<p class="text-ellipsis" title="板对板与夹层连接器">板对板与夹层连接器</p>
+									<p class="text-danger mt5">￥8.6375</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:PANASONIC</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/253166.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523593988265_4878.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">MPZ1608S102ATD25</p>
+									<p class="text-ellipsis" title="铁氧体磁珠">铁氧体磁珠</p>
+									<p class="text-danger mt5">￥0.175032</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:TDK</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/273151.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/attachments/files/5A/E5/5a4e536660f225f3570094e2388e4ea3.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">RC0805JR-0710RL</p>
+									<p class="text-ellipsis" title="SMD电阻器/芯片电阻器">SMD电阻器/芯片电阻器</p>
+									<p class="text-danger mt5">￥0.038</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:YAGEO</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="floor" floor-id='zrg'>
+			<div class="wraper">
+				<div class="inxSecCap">
+					<span class="inxSecCap__mod">阻容感</span>
+					<span>&nbsp;&nbsp;/&nbsp;优势产品，优选品牌</span>
+				</div>
+				<div class="clear">
+					<div class="floor-banner--zrg fl">
+						<div class="floor-banner__lnks">
+							<a href="/search/product.html?categoryId=1228">贴片电阻</a>
+							<a href="/search/product.html?categoryId=1235">车规电阻</a>
+							<a href="/search/product.html?categoryId=1046">压敏电阻</a>
+							<a href="/search/product.html?categoryId=1232">热敏电阻</a>
+							<a href="/search/product.html?categoryId=1229">精密电阻</a>
+							<a href="/search/product.html?categoryId=1219">钽电容</a>
+							<a href="/search/product.html?categoryId=1220">电解电容</a>
+							<a href="/search/product.html?categoryId=1236">车规电容</a>
+							<a href="/search/product.html?categoryId=1223">贴片电容</a>
+						</div>
+						<a href="/"><img class="lazy" height="441" width="274" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inx-floor-img-zrg.jpg?0914"></a>
+					</div>
+					<ul class="floor-grid fr">
+						<li>
+							<a class="proShItm" href="/product/233476.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523255031623_2712.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">VEJ101M1VTR-0607</p>
+									<p class="text-ellipsis" title="铝电解电容器">铝电解电容器</p>
+									<p class="text-danger mt5"> - </p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:LELON</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/240615.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254949630_4944.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">CR1206F45R60G</p>
+									<p class="text-ellipsis" title="SMD电阻器/芯片电阻器">SMD电阻器/芯片电阻器</p>
+									<p class="text-danger mt5">￥0.025875</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:LIZ</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/246354.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523255014864_3603.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">UUD1C101MCL1GS</p>
+									<p class="text-ellipsis" title="铝电解电容器">铝电解电容器</p>
+									<p class="text-danger mt5">￥0.903644</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:NICHICON</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/246613.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254918636_1931.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">ACT45B-510-2P-TL003</p>
+									<p class="text-ellipsis" title="共模扼流圈/滤波器">共模扼流圈/滤波器</p>
+									<p class="text-danger mt5">￥7.956</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:TDK</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/260645.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254933621_5703.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">CC0201MRX5R5BB105</p>
+									<p class="text-ellipsis" title="MLCC-多层陶瓷电容器">MLCC-多层陶瓷电容器</p>
+									<p class="text-danger mt5">￥0.174</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:YAGEO</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/292173.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254963949_0691.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">FCM1005KF-601T05</p>
+									<p class="text-ellipsis" title="磁珠">磁珠</p>
+									<p class="text-danger mt5">￥0.02025</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:TAI-TECH</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/318250.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254999970_6670.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">TAJA106K010RNJ</p>
+									<p class="text-ellipsis" title="钽电容器">钽电容器</p>
+									<p class="text-danger mt5">￥0.8925</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:AVX</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/319737.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254982277_5127.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">MHCD252010A-R68M-A8S</p>
+									<p class="text-ellipsis" title="固定电感器">固定电感器</p>
+									<p class="text-danger mt5">￥0.319125</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:CHILISIN</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="floor--ag">
+			<div class="wraper">
+				<ul class="floor-grid--ag clear">
+					<li>
+						<a href="/brand/874.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-tdk--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/875.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-yageo--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/944.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-tai--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/892.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-avx--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/879.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-chilisin--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/912.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-lelon--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/942.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-liz--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/938.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-nichicon--fl.jpg" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="floor" floor-id='lzq'>
+			<div class="wraper">
+				<div class="inxSecCap">
+					<span class="inxSecCap__mod">连接器/继电器/二三极管/MOS管</span>
+					<span>&nbsp;&nbsp;/&nbsp;品质保证，用心服务</span>
+				</div>
+				<div class="clear">
+					<div class="floor-banner--ljq fl">
+						<div class="floor-banner__lnks">
+							<a href="/search/product.html?categoryId=1103">夹层连接器</a>
+							<a href="/search/product.html?categoryId=1214">MOSFET</a>
+							<a href="/search/product.html?categoryId=1004">三极管</a>
+							<a href="/search/product.html?categoryId=1150">接口</a>
+							<a href="/search/product.html?categoryId=1211">稳压二极管</a>
+							<a href="/search/product.html?categoryId=1212">通用二极管</a>
+							<a href="/search/product.html?categoryId=1213">整流二极管</a>
+							<a href="/search/product.html?categoryId=1030">继电器与电磁阀</a>
+						</div>
+						<a href="/"><img class="lazy" height="441" width="274" data-original="http://upload.cdn.oneyac.com/attachments/page/index/inx-floor-img-ljq.jpg?0914"></a>
+					</div>
+					<ul class="floor-grid fr">
+						<li>
+							<a class="proShItm" href="/product/241576.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254665442_1422.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">LESD11D5.0CT5G</p>
+									<p class="text-ellipsis" title="二极管与整流器">二极管与整流器</p>
+									<p class="text-danger mt5">￥0.1144</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:LRC</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/271557.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254401494_1375.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">AXE630124D</p>
+									<p class="text-ellipsis" title="板对板与夹层连接器">板对板与夹层连接器</p>
+									<p class="text-danger mt5">￥0.68</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:PANASONIC</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/282515.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254352406_2184.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">1SR154-400TE25</p>
+									<p class="text-ellipsis" title="其他">其他</p>
+									<p class="text-danger mt5">￥0.34</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:ROHM</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/316356.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254385032_2251.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">AO4292E</p>
+									<p class="text-ellipsis" title="二极管与整流器">二极管与整流器</p>
+									<p class="text-danger mt5">￥1.347</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:AOS</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/841010.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523256075741_6734.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">BSC0702LS</p>
+									<p class="text-ellipsis" title=""></p>
+									<p class="text-danger mt5"> - </p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:Infineon</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/863915.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254647373_2198.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">XC6215B302MR</p>
+									<p class="text-ellipsis" title=""></p>
+									<p class="text-danger mt5">￥0.96</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:TOREX</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/870404.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254336685_6159.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">(G)SXH-001T-P0.6</p>
+									<p class="text-ellipsis" title=""></p>
+									<p class="text-danger mt5">￥0.095</p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:JST</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="proShItm" href="/product/871391.html" target="_blank">
+								<img class="lazy proShItm__img" data-original="http://upload.cdn.oneyac.com/upload/mfrs/1523254369946_9728.jpg" />
+								<div class="proShItm__info">
+									<p class="text-bold">963715-6</p>
+									<p class="text-ellipsis" title=""></p>
+									<p class="text-danger mt5"> - </p>
+									<div class="mt5 text-muted fs-12 clear">
+										<span class="fl">原厂:TE Connectivity</span>
+										<span class="fr">供货:唯样自营</span>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="floor--ag">
+			<div class="wraper">
+				<ul class="floor-grid--ag clear">
+					<li>
+						<a href="/brand/990.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-infineon--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/1204.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-jst--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/1043.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-lrc--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/878.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-panasonic--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/994.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-rohm--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/1062.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-te--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/923.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-torex--fl.jpg" />
+						</a>
+					</li>
+					<li>
+						<a href="/brand/1152.html" target="_blank">
+							<img height="70" width="148" class="lazy" data-original="http://upload.cdn.oneyac.com/attachments/page/index/ag-aos--fl.jpg" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="floor" floor-id='xpzx'>
+			<div class="wraper">
+				<div class="inxSecCap--nbr">
+					<span class="inxSecCap__mod">新品资讯</span>
+					<a class="inxSecCap__more" href="/tech_article/list.html" target="_blank">查看更多 <i class="iconfont icon-enter"></i></a>
+				</div>
+				<div class="clear">
+					<ul class="floor-grid--zx">
+						<li>
+							<a href="/tech_article/41.html" title="Susumu RG系列超精密薄膜芯片电阻器" class="inxXpItm is-new" target="_blank">
+								<div class="inxXpItm__brand">
+									<img alt="SUSUMU" src="<?=base_url()?>static/index/picture/susumu.jpg" />
+								</div>
+								<div class="inxXpItm__pro">
+									<img alt="" src="<?=base_url()?>static/index/picture/1542940183634_9706.jpg" />
+								</div>
+								<div class="inxXpItm__info">
+									<p class="inxXpItm__tit">
+										Susumu RG系列超精密薄膜芯片电阻器
+									</p>
+									<p class="inxXpItm__desc">
+										具备高可靠性和卓越的稳定性
+									</p>
+									<span class="text-primary">了解更多</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/tech_article/40.html" title="YAGEO GNSS 频带天线" class="inxXpItm " target="_blank">
+								<div class="inxXpItm__brand">
+									<img alt="YAGEO" src="<?=base_url()?>static/index/picture/1536646041483_4050.png" />
+								</div>
+								<div class="inxXpItm__pro">
+									<img alt="" src="<?=base_url()?>static/index/picture/1542615853130_5417.png" />
+								</div>
+								<div class="inxXpItm__info">
+									<p class="inxXpItm__tit">
+										YAGEO GNSS 频带天线
+									</p>
+									<p class="inxXpItm__desc">
+										是 GPS、GPS/Glonass、GPS/Beidou 和 GPS/Glonass/Beidou/Galileo 卫星导航系统的理想选择
+									</p>
+									<span class="text-primary">了解更多</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/tech_article/34.html" title="LRC带阻三极管（BRT）-LDTC114EET1G" class="inxXpItm " target="_blank">
+								<div class="inxXpItm__brand">
+									<img alt="LRC" src="<?=base_url()?>static/index/picture/1540601535911_3777.png" />
+								</div>
+								<div class="inxXpItm__pro">
+									<img alt="" src="<?=base_url()?>static/index/picture/1539758826118_4365.jpg" />
+								</div>
+								<div class="inxXpItm__info">
+									<p class="inxXpItm__tit">
+										LRC带阻三极管（BRT）-LDTC114EET1G
+									</p>
+									<p class="inxXpItm__desc">
+										LDTC114EET1G是一种新的数字晶体管，被设计来取代单一设备和它的外部电阻偏置网络。
+									</p>
+									<span class="text-primary">了解更多</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="/tech_article/39.html" title="KEMET-KOCAP汽车用聚合物电容器-T59X系列" class="inxXpItm " target="_blank">
+								<div class="inxXpItm__brand">
+									<img alt="KEMET" src="<?=base_url()?>static/index/picture/1536646064691_2318.png" />
+								</div>
+								<div class="inxXpItm__pro">
+									<img alt="" src="<?=base_url()?>static/index/picture/1541729024579_0749.jpg" />
+								</div>
+								<div class="inxXpItm__info">
+									<p class="inxXpItm__tit">
+										KEMET-KOCAP汽车用聚合物电容器-T59X系列
+									</p>
+									<p class="inxXpItm__desc">
+										低ESR、高容值、长寿命、小尺寸、薄型机高纹波电流处理能力
+									</p>
+									<span class="text-primary">了解更多</span>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery.lazyload.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>static/index/js/buy_dialog.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				function quickLnkLb() {
+					var $this = $(".quickLnkLb")
+					var $slides = $this.find(".quickLnkItm--lb")
+					var cur = 0
+					var aim = 0
+					var len = $slides.length
+					var circulator = 0
+					if(len <= 1) {
+						return false;
+					};
+
+					function change() {
+						clearInterval(circulator);
+						circulator = setInterval(function() {
+							aim < len - 1 ? aim++ : aim = 0;
+							$slides.eq(aim).fadeIn(300);
+							$slides.eq(cur).fadeOut(300);
+							cur = aim;
+						}, 3000);
+					}
+					change();
+				};
+				quickLnkLb();
+
+				// 首页显示产品分类
+				$("#allNav").addClass("is-index");
+				// 轮播图
+				function indexSlide() {
+					var $this = $("#slider")
+					var $slides = $this.find(".js-sildeItm")
+					var cur = 0
+					var aim = 0
+					var len = $slides.length
+					var circulator = 0
+					$slides.css({
+						position: "absolute"
+					}).eq(0).css({
+						display: "block"
+					});
+					if(len <= 1) {
+						return false;
+					};
+					var pagehtml = "<ul class='slider-pagination'>";
+					for(var i = 0; i < len; i++) {
+						i == 0 ? pagehtml += "<li class='slider-pageNum is-active'></li>" : pagehtml += "<li class='slider-pageNum'></li>";
+					}
+					pagehtml += "</ul>";
+					$this.append($(pagehtml));
+					$pagination = $this.find(".slider-pageNum");
+
+					function change() {
+						clearInterval(circulator);
+						circulator = setInterval(function() {
+							aim < len - 1 ? aim++ : aim = 0;
+							$slides.eq(aim).fadeIn(300);
+							$slides.eq(cur).fadeOut(300);
+							$pagination.eq(aim).addClass("is-active");
+							$pagination.eq(cur).removeClass("is-active");
+							cur = aim;
+						}, 4000);
+					}
+					change();
+					$pagination.each(function(i) {
+						$(this).click(function() {
+							aim = i;
+							if(aim != cur) {
+								$slides.eq(aim).fadeIn(300);
+								$slides.eq(cur).fadeOut(300);
+								$pagination.eq(aim).addClass("is-active");
+								$pagination.eq(cur).removeClass("is-active");
+								cur = aim;
+							}
+						});
+					});
+					$this.on({
+						"mouseenter": function() {
+							clearInterval(circulator);
+						},
+						"mouseleave": function() {
+							change();
+						}
+					});
+				};
+				indexSlide();
+				// 轮播图end
+
+				//新闻切换
+				$(".js-tabs").each(function() {
+					var $tabs = $(this)
+					var flag = $tabs.data('tabs')
+					var $inxs = $tabs.find(".js-tab-inx")
+					$inxs.on('mouseover', function() {
+						var $this = $(this);
+						if($this.hasClass("is-active")) return false;
+						var index = $this.data('inx');
+						$this.addClass("is-active").siblings(".is-active").removeClass("is-active");
+						$tabs.find("[data-tab-con]").hide()
+						$tabs.find("[data-tab-con='" + index + "']").show()
+					});
+				})
+
+				//楼层导航
+				function setFloorNav() {
+					var $nav = $("#floorNav")
+					var $navItms = $nav.find("[data-floor]")
+					var floorInxs = {}
+					var heightArr = []
+					var isClick = false
+					var floorFlag = -1
+					$navItms.each(function(i) {
+						var floorId = $(this).data("floor")
+						floorInxs[floorId] = i
+					})
+					$navItms.on("click", function() {
+						isClick = true
+						if(!$(this).hasClass("is-active"))
+							$(this).addClass("is-active").siblings(".is-active").removeClass("is-active")
+						floorFlag = floorInxs[$(this).data("floor")]
+						$("body,html").stop().animate({
+							scrollTop: heightArr[floorFlag]
+						}, 500, function() {
+							setTimeout(function() {
+								isClick = false
+							}, 50)
+						})
+					})
+
+					// 滚动的设置
+					var navActive = false
+					var navHide = true
+					$(window).on("scroll", utils.throttle(
+						function() {
+							var sctop = $(window).scrollTop();
+							if(sctop < heightArr[0] - 120) {
+								if(!navHide) {
+									$nav.removeClass("is-active") //.find(".is-active").removeClass("is-active")
+									navHide = true
+									navActive = false
+								}
+								return false
+							}!navActive && ($nav.addClass("is-active"), navActive = true, navHide = false)
+							if(isClick) return false
+							for(var i = 0; i < heightArr.length - 1; i++) {
+								if(sctop >= heightArr[i] && sctop < heightArr[i + 1]) {
+									break
+								}
+							}
+							if(floorFlag !== i) {
+								floorFlag = sctop < heightArr[0] ? 0 : i
+								$navItms.eq(floorFlag).addClass("is-active").siblings(".is-active").removeClass("is-active")
+							}
+						}, 200));
+					$nav.find(".js-goTop").on("click", function() {
+						$("body,html").stop().animate({
+							scrollTop: 0
+						}, 500)
+					})
+				}
+				setFloorNav()
+				//楼层导航end
+
+				//图片懒加载
+				$("img.lazy").lazyload({
+					placeholder: "http://static.cdn.oneyac.com/static/www/images/img-bg-f8367b595c20c4d045b9cf4720a13076.png",
+					effect: "fadeIn"
+				});
+
+				// 滚动js
+				function scrollLeft(settings) {
+					var wrap = settings.wrap || null
+					var moveLst = settings.moveLst || null
+					var pageWrp = settings.pageWrp || '.scroll-page'
+					var pageCls = settings.pageCls || '.scroll-page-itm'
+					var moveEle = settings.moveEle || '.scroll-lst-itm'
+					var prevIcn = settings.prevIcn || '.js-prev'
+					var nextIcn = settings.nextIcn || '.js-next'
+					var moveNum = settings.moveNum || 0
+					var autoMove = settings.autoMove || false
+					if(!Boolean(moveLst)) return false
+					var $wrap = $(wrap)
+					var $list = $(moveLst)
+					var $listItms = $list.find(moveEle)
+					var $page = null
+					var $prev = null
+					var $next = null
+					var pageLen = undefined
+					var curInx = 0
+					var curPage = 0
+					var listLen = $listItms.length
+					var listPosLeft = 0
+					var listItemW = $listItms.eq(0).outerWidth() // 获取列表项
+					$list.css("width", listLen * listItemW + 'px')
+					pageLen = Math.ceil(listLen / moveNum)
+					if(pageWrp !== false) {
+						$page = $(pageWrp)
+						for(var i = 0; i < pageLen; i++) {
+							$page.append(i !== 0 ? ('<span class="' + pageCls + '"></span>') : ('<span class="is-active ' + pageCls + '"></span>'))
+						}
+					}
+
+					if(prevIcn !== false) {
+						$prev = $wrap.find(prevIcn)
+						$prev.addClass("is-disabled")
+					}
+					if(nextIcn !== false) {
+						$next = $wrap.find(nextIcn)
+						pageLen <= 1 && $next.addClass("is-disabled")
+					}
+
+					if(pageLen <= 1) return false
+
+					$prev.on("click", function() {
+						if(curPage === 0) return false
+						move(curPage - 1)
+						curPage--
+						$next.removeClass("is-disabled")
+						curPage === 0 ? $(this).addClass("is-disabled") : $(this).removeClass("is-disabled")
+					})
+					$next.on("click", function() {
+						if(curPage === pageLen - 1) return false
+						move(curPage + 1)
+						curPage++
+						$prev.removeClass("is-disabled")
+						curPage === pageLen - 1 ? $(this).addClass("is-disabled") : $(this).removeClass("is-disabled")
+					})
+
+					function changePage(inx) {
+						pageWrp !== false && $page.find("." + pageCls).eq(inx).addClass("is-active").siblings().removeClass("is-active")
+					}
+					if(pageWrp !== false) {
+						$page.find("." + pageCls).each(function(index) {
+							$(this).on("click", function() {
+								if(!$(this).hasClass("is-active")) {
+									move(index)
+									curPage = index
+									changePage(index)
+								}
+							})
+						})
+					}
+					var clock = 0
+
+					function setAuto() {
+						clock = setInterval(function() {
+							if(curPage >= pageLen - 1) {
+								move(0)
+								curPage = 0
+							} else {
+								move(curPage + 1)
+								curPage = curPage + 1
+							}
+							changePage(curPage)
+						}, autoMove || 3000)
+					}
+					if(autoMove) {
+						setAuto()
+						$list.on('mouseover', function() {
+							clearInterval(clock)
+						})
+						$list.on('mouseleave', function() {
+							setAuto()
+						})
+					}
+
+					function move(aimPage) {
+						var aimInx = curInx + (moveNum) * (aimPage - curPage) // 计算滚动多少个ele
+						aimInx < 0 && (aimInx = 0)
+						aimInx > (listLen - moveNum) && (aimInx = listLen - moveNum)
+						listPosLeft = -(aimInx * listItemW)
+						$list.animate({
+							left: listPosLeft + 'px'
+						})
+						curInx = aimInx
+					}
+				}
+				//
+				scrollLeft({
+					wrap: "#inxAgScroll",
+					moveLst: "#inxAgScroll .js-aglist",
+					pageWrp: "#inxAgScroll .js-agpage",
+					pageCls: 'inx-agPage-itm',
+					moveEle: '>li',
+					prevIcn: false,
+					nextIcn: false,
+					moveNum: 5,
+					autoMove: 5000
+				})
+				scrollLeft({
+					wrap: "#newsScroll1",
+					moveLst: "#newsScroll1 .js-list",
+					pageWrp: false,
+					moveEle: '>li',
+					prevIcn: '.js-prev',
+					nextIcn: '.js-next',
+					moveNum: 4
+				})
+				scrollLeft({
+					wrap: "#newsScroll2",
+					moveLst: "#newsScroll2 .js-list",
+					pageWrp: false,
+					moveEle: '>li',
+					prevIcn: '.js-prev',
+					nextIcn: '.js-next',
+					moveNum: 4
+				})
+				// 滚动js end
+			});
+
+			$(document).ready(function() {
+				$("#indexPage").addClass("active is-active");
+			});
+		</script>
+		<div class="l-btmBanner">
+			<div class="btmBanner clear">
+				<div class="btmBannerItm">
+					<span class="btmBannerItm__mod1"></span>
+					<p class="text-bold">品质保障</p>
+					<p class="text-muted fs-12">原厂渠道&nbsp;&nbsp;购物无忧</p>
+				</div>
+				<div class="btmBannerItm">
+					<span class="btmBannerItm__mod2"></span>
+					<p class="text-bold">一站采购</p>
+					<p class="text-muted fs-12">正品元件&nbsp;&nbsp;应有尽有</p>
+				</div>
+				<div class="btmBannerItm">
+					<span class="btmBannerItm__mod3"></span>
+					<p class="text-bold">极速物流</p>
+					<p class="text-muted fs-12">闪电发货&nbsp;&nbsp;在线跟踪</p>
+				</div>
+				<div class="btmBannerItm--last">
+					<span class="btmBannerItm__mod4"></span>
+					<p class="text-bold">会员权益</p>
+					<p class="text-muted fs-12">非凡体验&nbsp;&nbsp;贴心服务</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-wrap">
+				<dl class="footer-nav clear">
+					<dd>
+						<h4>商城介绍</h4>
+						<ul>
+							<li>
+								<a href="/page/2.html" rel="nofollow">关于唯样</a>
+							</li>
+							<li>
+								<a href="/help/16.html" rel="nofollow">联系我们</a>
+							</li>
+							<li>
+								<a href="/page/1.html" rel="nofollow">优势资源</a>
+							</li>
+						</ul>
+					</dd>
+					<dd>
+						<h4>新手指南</h4>
+						<ul>
+							<li>
+								<a href="<?=site_url()?>index/login.html" rel="nofollow">注册登录</a>
+							</li>
+							<li>
+								<a href="/help/12.html" rel="nofollow">隐私协议</a>
+							</li>
+							<li>
+								<a href="/help/2.html" rel="nofollow">发票须知</a>
+							</li>
+						</ul>
+					</dd>
+					<dd>
+						<h4>支付方式</h4>
+						<ul>
+							<li>
+								<a href="/help/9.html" rel="nofollow">支付安全</a>
+							</li>
+							<li>
+								<a href="/help/10.html" rel="nofollow">银行转账</a>
+							</li>
+						</ul>
+					</dd>
+					<dd class="border-rnone">
+						<h4>售后服务</h4>
+						<ul>
+							<li>
+								<a target="_blank" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" rel="nofollow">在线客服</a>
+							</li>
+							<li><span>客服电话：400-870-9968</span></li>
+						</ul>
+					</dd>
+				</dl>
+				<div class="footer-att">
+					<img src="<?=base_url()?>static/index/picture/footer-att-6db8dcbb70e5982ee5bcecce613e1e07.jpg" />
+				</div>
+				<div class="footer-lnk clear">
+					<span class="footer-lnk__cap">友情链接：</span>
+					<div class="footer-lnk__con">
+						<a href="http://www.xmholder.com/" target="_blank">信和达</a>
+						<a href="http://www.superic.com/" target="_blank">芯智云城</a>
+						<a href="http://www.mlcc1.com/" target="_blank">易容网</a>
+						<a href="http://www.smdmark.com/" target="_blank">芯片丝印反查网</a>
+						<a href="http://www.dianzizhan.cn/" target="_blank">深圳电子展</a>
+						<a href="http://www.shelec.cn/" target="_blank">上海电子展</a>
+						<a href="http://www.jzic.com/" target="_blank">电子之家</a>
+						<a href="https://www.isweek.cn" target="_blank">传感器</a>
+						<a href="http://www.four-faith.com" target="_blank">工业路由器</a>
+						<a href="https://www.elecbee.cn/" target="_blank">接插件</a>
+						<a href="http://www.fany-eda.com" target="_blank">PCB打样</a>
+						<a href="http://www.dzkfw.com.cn/" target="_blank">电子制作</a>
+						<a href="http://www.eechina.com/" target="_blank">电子工程网</a>
+						<a href="http://www.cmalls.net/" target="_blank">小猫芯城</a>
+						<a href="https://www.ichunt.com/" target="_blank">电子元器件商城</a>
+						<a href="http://www.juda.cn/" target="_blank">锂电池</a>
+						<a href="http://www.china-guan.com/" target="_blank">电子连接器</a>
+						<a href="http://www.eliboard.com/web/index.htm" target="_blank">优客板</a>
+						<a href="http://www.51dzw.com" target="_blank">51电子网</a>
+						<a href="http://www.cnyxd.com/" target="_blank">可调电阻</a>
+						<a href="http://www.21icsearch.com/" target="_blank">21ic电子元器件网</a>
+						<a href="http://www.hi-mantech.com/" target="_blank">村田代理商</a>
+						<a href="http://www.52solution.com/" target="_blank">我爱方案网</a>
+						<a href="http://www.easy-key.cn/sk/oneyac" target="_blank">易捷晶振网</a>
+					</div>
+				</div>
+				<div class="footerInxNav clear">
+					<a class="footerInxNav__cap" style="margin: 0;color: #333;" href="/microstation/index.html">字母索引：</a>
+					<div class="footerInxNav__con">
+						<a href="/microstation/productlist/A-1.html">A</a>
+						<a href="/microstation/productlist/B-1.html">B</a>
+						<a href="/microstation/productlist/C-1.html">C</a>
+						<a href="/microstation/productlist/D-1.html">D</a>
+						<a href="/microstation/productlist/E-1.html">E</a>
+						<a href="/microstation/productlist/F-1.html">F</a>
+						<a href="/microstation/productlist/G-1.html">G</a>
+						<a href="/microstation/productlist/H-1.html">H</a>
+						<a href="/microstation/productlist/I-1.html">I</a>
+						<a href="/microstation/productlist/J-1.html">J</a>
+						<a href="/microstation/productlist/K-1.html">K</a>
+						<a href="/microstation/productlist/L-1.html">L</a>
+						<a href="/microstation/productlist/M-1.html">M</a>
+						<a href="/microstation/productlist/N-1.html">N</a>
+						<a href="/microstation/productlist/O-1.html">O</a>
+						<a href="/microstation/productlist/P-1.html">P</a>
+						<a href="/microstation/productlist/Q-1.html">Q</a>
+						<a href="/microstation/productlist/R-1.html">R</a>
+						<a href="/microstation/productlist/S-1.html">S</a>
+						<a href="/microstation/productlist/T-1.html">T</a>
+						<a href="/microstation/productlist/U-1.html">U</a>
+						<a href="/microstation/productlist/V-1.html">V</a>
+						<a href="/microstation/productlist/W-1.html">W</a>
+						<a href="/microstation/productlist/X-1.html">X</a>
+						<a href="/microstation/productlist/Y-1.html">Y</a>
+						<a href="/microstation/productlist/Z-1.html">Z</a>
+						<a href="/microstation/productlist/0-1.html">0</a>
+						<a href="/microstation/productlist/1-1.html">1</a>
+						<a href="/microstation/productlist/2-1.html">2</a>
+						<a href="/microstation/productlist/3-1.html">3</a>
+						<a href="/microstation/productlist/4-1.html">4</a>
+						<a href="/microstation/productlist/5-1.html">5</a>
+						<a href="/microstation/productlist/6-1.html">6</a>
+						<a href="/microstation/productlist/7-1.html">7</a>
+						<a href="/microstation/productlist/8-1.html">8</a>
+						<a href="/microstation/productlist/9-1.html">9</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="af-footer">
+			<div class="footer-btm">
+				<p>
+					<a href="/help/1.html" target="_blank" rel="nofollow">新手上路</a>
+					<a href="/help/3.html" target="_blank" rel="nofollow">免责声明</a>
+					<a href="/help/13.html" target="_blank" rel="nofollow">销售条款</a>
+					<a href="/help/16.html" target="_blank" rel="nofollow">联系我们</a>
+					<a href="http://tech.oneyac.com" target="_blank">唯样资讯</a>
+				</p>
+				<p>Copyright © 2018 厦门唯样科技有限公司&nbsp;&nbsp;闽ICP备17005748号-1</p>
+			</div>
+			<div class="footer-logo">
+				<a class="footer-lgItm">
+					<img src="<?=base_url()?>static/index/picture/footer-logo-zfb-bfff77e8962851b979619ecfd32edd59.jpg" />
+				</a>
+				<a class="footer-lgItm">
+					<img src="<?=base_url()?>static/index/picture/footer-logo-wx-8971bf5ca438f2453bbd72d8f34d24e5.jpg" />
+				</a>
+				<a class="footer-lgItm">
+					<img src="<?=base_url()?>static/index/picture/footer-logo-yl-4652f11dad6991c18833d3a37efe7e13.jpg" />
+				</a>
+				<a class="footer-lgItm">
+					<img src="<?=base_url()?>static/index/picture/footer-logo-sfyz-07801c8236de2724e89466618099a8b1.jpg" />
+				</a>
+				<a class="footer-lgItm">
+					<img src="<?=base_url()?>static/index/picture/footer-logo-rz-7b5f9b193edfa076b7ea5939edb6e57e.jpg" />
+				</a>
+			</div>
+		</div>
+		<div id="toolConZj" class="zuji-page">
+			<h5>
+        <i class="iconfont icon-zuji"></i>
+        &nbsp;我的足迹
+        <a id="zujiClose" href="javascript:;" title="隐藏" class="close">&times;</a>
+    </h5>
+			<ul class="zuji-ul js-zujiCon"></ul>
+		</div>
+		<div class="toolbox" id="toolBox">
+			<div class="toolbox-fold js-showIcn">
+				<span class="toolbox__showIcn"></span> 在
+				<br/>线<br/>咨<br/>询
+			</div>
+			<div class="toolbox-unfold">
+				<span class="js-hideIcn toolbox__hideIcn"></span>
+				<a id="nav_tool_kf_href" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" target="_blank" rel="nofollow">
+					<div class="toolbox-qq">
+						<div class="toolbox-qq__bg"></div>
+						<div class="toolbox-qq__imgWrp">
+							<img src="<?=base_url()?>static/index/picture/qq-78c241cc0bd7db65a4dfebfd44ff10d3.png" class="toolbox-qq__img" />
+						</div>
+						<p class="toolbox-qq__wrd">QQ咨询</p>
+					</div>
+				</a>
+				<div class="toolbox-funs">
+					<a href="<?=site_url()?>/index/cart" class="toolbox-funsItm" rel="nofollow">
+						<i class="iconfont icon-gouwuche"></i>
+						<br/> 购物车
+					</a>
+					<a href="/account/index.html" class="toolbox-funsItm" rel="nofollow">
+						<i class="iconfont icon-renyuan"></i>
+						<br/> 会员中心
+					</a>
+					<a href="javascript:void(0);" class="js-showZuji toolbox-funsItm" rel="nofollow">
+						<i class="iconfont icon-tl-zuji"></i>
+						<br/> 浏览历史
+					</a>
+					<a href="javascript:void(0);" class="js-showCompare toolbox-funsItm" rel="nofollow">
+						<i class="iconfont icon-duibi"></i>
+						<br/> 商品对比
+					</a>
+				</div>
+				<div class="toolbox-btm">
+					<i class="toolbox-btmIcn--t iconfont icon-a871 js-showTd"></i>
+					<i class="toolbox-btmIcn iconfont icon-tl-gotop js-goTop"></i>
+				</div>
+				<div class="toolbox-conItm text-center js-tdCon" style="top: 195px;">
+					<span class="caret--right is-empty" style="bottom:23px;"></span>
+					<p>关注唯样公众号</p>
+					<img src="<?=base_url()?>static/index/picture/footer-att-6db8dcbb70e5982ee5bcecce613e1e07.jpg" />
+				</div>
+			</div>
+		</div>
+
+		<!--对比 开始-->
+		<div id="proCompare" class="is-hidden pro-compare">
+			<div class="pro-compare-cap">
+				<h4>对比栏</h4>
+				<a id="closeCompare" class="close" href="javascript:void(0);">X&nbsp;&nbsp;关闭</a>
+			</div>
+			<div class="pro-compare-mian">
+				<ul class="list-inline">
+				</ul>
+				<div class="pro-compare-op">
+					<a id="linkToCompare" class="btn btn-primary" href="javascript:void(0);">对比</a>
+					<br/>
+					<a id="clearCompare" class="text-primary mt5" href="javascript:void(0);">清空对比栏</a>
+				</div>
+			</div>
+		</div>
+		<!--对比 结束-->
+		<script src="<?=base_url()?>/static/index/js/tool.nav.js"></script>
+	</body>
+
+	</html>

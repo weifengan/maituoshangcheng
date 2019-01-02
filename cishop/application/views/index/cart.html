@@ -1,0 +1,663 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>购物车_电子元器件采购网/网上商城-唯样商城-被动元器件全线代理直供平台</title>
+<meta name="description" content="购物车，电子元器件采购网，电子元器件网上商城，唯样商城，是电子元器件采购首选的电商平台及网上商城，国内领先的被动元器件全线代理直供平台，以自营现货供应电子元器件为主营业务，致力于满足客户多品种、小批量、高质量的采购需求。"/>
+<meta name="keywords" content="购物车，电子元器件采购网，电子元器件网上商城，电子，元器件，电子元件，被动元件，元器件电商，元器件平台，元器件采购，元器件交易网，样品商城"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="format-detection" content="email=no" />
+<meta name="renderer" content="webkit">
+<meta name="applicable-device" content="pc">
+<link type="text/css" rel="stylesheet" href="<?=base_url()?>static/index/css/style.css" />
+<!--[if IE 8]>
+<script type="text/javascript" src="static/js/es5-shim.min-d6232c005e077864a789dfcc23a5503e.js"></script>
+<![endif]-->
+<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/layer.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/validate.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/common.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/big.decimal.js"></script>
+
+<body>
+
+  <div class="header-top">
+    <div class="wraper clear">
+      <p class="fl">
+        <span>您好！欢迎来到迈拓恒科商城！</span> &nbsp;&nbsp;
+        <a href="<?=site_url()?>/index/login/" top-bar-login-user rel="nofollow">登录</a>
+        &nbsp;
+        <span class="fs-10 text-muted">&nbsp;|&nbsp;</span> &nbsp;
+        <a href="<?=site_url()?>/index/register" top-bar-register-user rel="nofollow">注册</a>
+      </p>
+      <div class="fr">
+        <a class="text-link" href="/account/order/list.html" rel="nofollow">
+          <i class="fs-14 iconfont icon-order"></i>&nbsp;我的订单
+        </a>
+        <span class="fs-10 text-muted">&nbsp;|&nbsp;</span>
+        <a class="text-link" href="/account/index.html" rel="nofollow">
+          <i class="fs-14 iconfont icon-renyuan"></i>&nbsp;会员中心
+        </a>
+        <span class="fs-10 text-muted">&nbsp;|&nbsp;</span>
+        <a class="text-link" class="ml10" target="_blank" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" rel="nofollow">
+          <i class="fs-14 iconfont icon-qq"></i>&nbsp;在线客服
+        </a>
+        <span class="text-primary ml10">客服电话：400-870-9968</span>
+        <span class="text-primary ml10">服务时间：8:30-17:30</span>
+      </div>
+    </div>
+  </div>
+<script>
+    function showHeaderTopBarLoginInfo(userName) {
+        if(!userName){
+            return;
+        }
+        $("[top-bar-login-user]").attr("href","/account/index.html").html(userName).addClass("text-link");
+        $("[top-bar-register-user]").attr("href","/logout.html").html("退出").addClass("text-link");
+    }
+</script>        <div class="header_shop">
+            <div class="wraper">
+                <h1 class="logo fl">
+                    <a href="<?=site_url()?>/index/home" title="迈拓恒科商城">
+                        <img class="logo__img" height="50" alt="迈拓恒科商城" src="<?=base_url()?>/static/index/picture/head-logo.png" style="height: 50px;width: auto;">
+                    </a>
+                </h1>
+                <div class="shop-step fr">
+                    <div class="step1">1.我的购物车</div>
+                    <div class="step2">2.订单填写及核实</div>
+                    <div class="step3">3.提交成功</div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper">
+            <div class="crumb_shop">
+                <p class="caption">我的购物车</p>
+                <a class="text-link ml10" href="<?=site_url()?>/index/home">继续购物&gt;&gt;</a>
+                    <span class="fr text-tip">
+                    	订单满￥100 免运费
+                	</span>
+            </div>
+
+            <div class="mt10 section_shop">
+                <h3 class="caption">所有商品</h3>
+                <div class="padding20">
+                        <div class="cart-empty">
+                            <i class="iconfont icon-cartEmpty"></i>
+							<br/>
+                            您的购物车为空！请先选择您要购买的型号。<br/>
+                            <a class="text-link" href="<?=site_url()?>/index/home">去购物</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+<div id="loginBox" class="lg-box-dialog">
+    <input class="display-none" value="false" id="loginDialogIsLogin"/>
+    <h3 js-tab-inx="lgtab" class="lg-tab clear">
+        <a href="javascript:void(0);" js-tab-item="1" class="lg-tab-item is-active">账号登录</a>
+        <span class="lg-tab-line"></span>
+        <a href="javascript:void(0);" js-tab-item="2" class="lg-tab-item">免密码登录</a>
+    </h3>
+    <p data-id="errTip" class="lg-msg"></p>
+    <div js-tab-con="lgtab">
+        <div js-tab-item="1" class="lg-form is-active">
+            <form data-id="generalLoginForm">
+                <div class="lg-form-row">
+                    <span class="input-lab">账号</span>
+                    <input class="input" name="userName" value="" placeholder="用户名/手机号码" type="text">
+                </div>
+                <div class="lg-form-row">
+                    <span class="input-lab">密码</span>
+                    <input name="password" placeholder="密码" class="input" type="password">
+                </div>
+                <div class="lg-form-row" >
+        <script type="text/javascript" charset="utf-8"
+                src="static/js/nc.js"></script>
+    <div id="login_afs_with_password" class="nc-container" style="width:100%"></div>
+    <style type="text/css">
+        #login_afs_with_password
+        * {
+            box-sizing: content-box;
+        }
+
+        #login_afs_with_password
+        .nc_scale span {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #login_afs_with_password
+        div.nc_scale {
+            height: 42px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 对外提供完成标志（全局变量）
+        if (typeof aliyun_afs == "undefined") {
+            aliyun_afs = new Object();
+        }
+        aliyun_afs.login_afs_with_password = new Object();
+        aliyun_afs.login_afs_with_password.complete = false;
+        aliyun_afs.login_afs_with_password.data = "";
+        aliyun_afs.login_afs_with_password.token = ["FFFF0N0000000000672D", (new Date()).getTime(), Math.random()].join(':');
+        aliyun_afs.login_afs_with_password.opt =
+                {
+                    renderTo: "#login_afs_with_password",
+                    appkey: "FFFF0N0000000000672D",
+                    scene: "nc_message",
+                    token: aliyun_afs.login_afs_with_password.token,
+                    customWidth: ('100%'.indexOf("%") != -1 ? '100%' : parseInt('100%')),
+                    callback: function (data) {
+                        if (data.value == "pass") {
+                            aliyun_afs.login_afs_with_password.complete = true;
+                            aliyun_afs.login_afs_with_password.data = "afs_session=" + data.csessionid + "&afs_sig=" + data.sig +
+                                    "&afs_scene=nc_message&afs_token=" + aliyun_afs.login_afs_with_password.token;
+                        }
+                        // 对外提供回调函数
+                        if (typeof aliyun_afs.login_afs_with_password.callback == 'function') {
+                            aliyun_afs.login_afs_with_password.callback(data.csessionid, data.sig, "nc_message", aliyun_afs.login_afs_with_password.token, status);
+                        }
+                    },
+                    error: function () {
+                        // 测试用代码 start
+                        $.ajax("/ajax_pc_afs_load_error.html?id=login_afs_with_password");
+                        // 测试用代码 end
+                        layer.alert("验证码加载出错，请点刷新进行重试或联系QQ客服，谢谢!");
+                    }
+
+                }
+
+        aliyun_afs.login_afs_with_password.reset = function () {
+            aliyun_afs.login_afs_with_password.data = "";
+            aliyun_afs.login_afs_with_password.complete = false;
+            aliyun_afs.login_afs_with_password.nc.reset();
+        }
+
+        aliyun_afs.login_afs_with_password.init = function () {
+            aliyun_afs.login_afs_with_password.nc = new noCaptcha(aliyun_afs.login_afs_with_password.opt)
+            aliyun_afs.login_afs_with_password.nc.upLang('cn', {
+                _startTEXT: "请按住滑块，拖动到最右边",
+                _yesTEXT: "验证通过",
+                _error300: "哎呀，出错了，点击<a href=\"javascript:aliyun_afs.login_afs_with_password.reset()\">刷新</a>再来一次",
+                _errorNetwork: "网络不给力，请<a href=\"javascript:aliyun_afs.login_afs_with_password.reset()\">点击刷新</a>",
+            });
+            aliyun_afs.login_afs_with_password.reset();
+        }
+
+            aliyun_afs.login_afs_with_password.init();
+    </script>
+                    <input hidden id="afs_session" name="afs_session">
+                    <input hidden id="afs_sig" name="afs_sig">
+                    <input hidden id="afs_scene" name="afs_scene">
+                    <input hidden id="afs_token" name="afs_token">
+                </div>
+                <button type="button" id="generalLogin" class="lg-subicn mt15" href="javascript:void(0);">立即登录</button>
+            </form>
+            <div class="clear lg-form-row">
+                <p class="fl text-muted fs-12">还没有账号?&nbsp;&nbsp;<a class="color-blue" href="/register.html">立即注册</a></p>
+                <a class="fr fs-12"  href="/password/forgotpassword.html">忘记密码</a>
+            </div>
+        </div>
+        <div js-tab-item="2" class="lg-form">
+            <form data-id="dynamicLoginForm">
+                <div class="lg-form-row"><span class="input-lab">手机号</span>
+                    <input class="input" name="mobile" id="login_mobile" placeholder="手机号码" type="text">
+                </div>
+                <div class="lg-form-row" >
+        <script type="text/javascript" charset="utf-8"
+                src="static/js/nc.js"></script>
+    <div id="login_afs_with_message" class="nc-container" style="width:100%"></div>
+    <style type="text/css">
+        #login_afs_with_message
+        * {
+            box-sizing: content-box;
+        }
+
+        #login_afs_with_message
+        .nc_scale span {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #login_afs_with_message
+        div.nc_scale {
+            height: 42px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 对外提供完成标志（全局变量）
+        if (typeof aliyun_afs == "undefined") {
+            aliyun_afs = new Object();
+        }
+        aliyun_afs.login_afs_with_message = new Object();
+        aliyun_afs.login_afs_with_message.complete = false;
+        aliyun_afs.login_afs_with_message.data = "";
+        aliyun_afs.login_afs_with_message.token = ["FFFF0N0000000000672D", (new Date()).getTime(), Math.random()].join(':');
+        aliyun_afs.login_afs_with_message.opt =
+                {
+                    renderTo: "#login_afs_with_message",
+                    appkey: "FFFF0N0000000000672D",
+                    scene: "nc_message",
+                    token: aliyun_afs.login_afs_with_message.token,
+                    customWidth: ('100%'.indexOf("%") != -1 ? '100%' : parseInt('100%')),
+                    callback: function (data) {
+                        if (data.value == "pass") {
+                            aliyun_afs.login_afs_with_message.complete = true;
+                            aliyun_afs.login_afs_with_message.data = "afs_session=" + data.csessionid + "&afs_sig=" + data.sig +
+                                    "&afs_scene=nc_message&afs_token=" + aliyun_afs.login_afs_with_message.token;
+                        }
+                        // 对外提供回调函数
+                        if (typeof aliyun_afs.login_afs_with_message.callback == 'function') {
+                            aliyun_afs.login_afs_with_message.callback(data.csessionid, data.sig, "nc_message", aliyun_afs.login_afs_with_message.token, status);
+                        }
+                    },
+                    error: function () {
+                        // 测试用代码 start
+                        $.ajax("/ajax_pc_afs_load_error.html?id=login_afs_with_message");
+                        // 测试用代码 end
+                        layer.alert("验证码加载出错，请点刷新进行重试或联系QQ客服，谢谢!");
+                    }
+
+                }
+
+        aliyun_afs.login_afs_with_message.reset = function () {
+            aliyun_afs.login_afs_with_message.data = "";
+            aliyun_afs.login_afs_with_message.complete = false;
+            aliyun_afs.login_afs_with_message.nc.reset();
+        }
+
+        aliyun_afs.login_afs_with_message.init = function () {
+            aliyun_afs.login_afs_with_message.nc = new noCaptcha(aliyun_afs.login_afs_with_message.opt)
+            aliyun_afs.login_afs_with_message.nc.upLang('cn', {
+                _startTEXT: "请按住滑块，拖动到最右边",
+                _yesTEXT: "验证通过",
+                _error300: "哎呀，出错了，点击<a href=\"javascript:aliyun_afs.login_afs_with_message.reset()\">刷新</a>再来一次",
+                _errorNetwork: "网络不给力，请<a href=\"javascript:aliyun_afs.login_afs_with_message.reset()\">点击刷新</a>",
+            });
+            aliyun_afs.login_afs_with_message.reset();
+        }
+
+    </script>
+                </div>
+                <div class="lg-form-row">
+                    <span class="input-lab">验证码</span>
+                    <input name="vecode" placeholder="验证码" class="input input-pin" type="text">
+                    <button type="button" data-id="getPin" class="getpin" id="getPinIcn">发送验证码</button>
+                </div>
+                <button type="button" id="dynamicLogin" class="lg-subicn mt15" href="javascript:void(0);">立即登录</button>
+            </form>
+            <div class="clear lg-form-row">
+                <p class="fl text-muted fs-12">还没有账号?&nbsp;&nbsp;<a class="color-blue" href="/register.html">立即注册</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="lg-othway">
+        <p class="lg-othway-h3">使用合作帐号登录</p>
+        <div class="lg-othway-con">
+            <a class="ml10 text-muted" href="/weixin/qrcode_login/login?returnUrl=%2Fcart"><i class="iconfont icon-weixin"></i>&nbsp;<span>微信</span></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="static/js/login-a3bc97b27065e53acc75b830c3c51284.js" ></script>
+        <script type="text/javascript">
+        var orderCheckObj = {
+		// 初始化页面
+		initPage: function() {
+			this.initEvent();
+			this.initData();
+			this.afterInitData();
+		},
+		initEvent: function() {
+			 //全选
+	        $(".cartProChk").on("change",function(){
+	            if( $(".cartProChk").length == $(".cartProChk:checked").length){
+	                $("#proCheckAll")[0].checked=true;
+	            }else{
+	                $("#proCheckAll")[0].checked=false;
+	            }
+	            totalPrice();
+	        });
+	        $("#proCheckAll").on("change",function(){
+	            if(this.checked==true){
+	                $(".cartProChk").each(function(){this.checked=true});
+	            }else{
+	                $(".cartProChk").each(function(){this.checked=false});
+	            }
+	            totalPrice();
+	        });
+	        //增加按钮
+			$(".add").each(function(){
+				$(this).on("click",function(){
+					var  addinp  = $(this).parent().find("input[class*=inp]");
+					var orderStepNum=$(this).parent().find('input[name="orderStepNum"]').val();
+                    var currentNum = parseInt(addinp.val())+parseInt(orderStepNum);
+                    /*var inventory=$(this).parent().find('input[name="inventory"]').val();
+                    if(currentNum>inventory){
+                        layer.msg("购买数量超出库存！");
+					}*/
+                    addinp.val(currentNum);
+					currectTotalPrice(this);
+					totalPrice();
+				})
+			});
+			//减少按钮
+			$(".minus").each(function(){
+				$(this).on("click",function(){
+					var  addinp = $(this).parent().find("input[class*=inp]");
+					var orderMinNum=$(this).parent().find('input[name="orderMinNum"]').val();
+					var orderStepNum=$(this).parent().find('input[name="orderStepNum"]').val();
+					var currentNum = parseInt(addinp.val())-parseInt(orderStepNum);
+                    /*var inventory=$(this).parent().find('input[name="inventory"]').val();
+                    if(currentNum>inventory){
+                        layer.msg("购买数量超出库存！");
+                    }*/
+					if(currentNum<orderMinNum){
+						currentNum=orderMinNum;
+					}
+					addinp.val(currentNum);
+					currectTotalPrice(this);
+					totalPrice();
+				})
+			});
+			$(".inp").blur(function(){
+
+				var tmptxt=$(this).parent().find("input[class*=inp]").val();
+				var orderMinNum=$(this).parent().find('input[name="orderMinNum"]').val();
+				var minNum=$(this).parent().find('input[name="minNum"]').val();
+                var orderStepNum=$(this).parent().find('input[name="orderStepNum"]').val();
+		        tmptxt = tmptxt.replace(/\D|^0/g,'');
+		        if(tmptxt==""){
+                    layer.msg("请填写正确购买数量！");
+		        	tmptxt = orderMinNum;
+		        }else if(parseInt(tmptxt)<parseInt(orderMinNum)){
+                    layer.msg("购买数量必须大于最小购买数！");
+		        	tmptxt = orderMinNum;
+		        }else if(parseInt(tmptxt)<parseInt(minNum)){
+                    layer.msg("购买数量必须大于最小购买数！");
+		        	tmptxt = minNum;
+		        }else if (0 != tmptxt % orderStepNum) {
+                    layer.msg("该商品购买数量应该是：" + orderStepNum + "的倍数");
+                    tmptxt = minNum;
+                }
+                /*var inventory=$(this).parent().find('input[name="inventory"]').val();
+                if(parseInt(tmptxt)>parseInt(inventory)){
+                    layer.msg("购买数量超出库存！");
+                    tmptxt = orderMinNum;
+                }*/
+		        $(this).parent().find("input[class*=inp]").val(tmptxt);
+				currectTotalPrice(this);
+			});
+				//每个商品的当前总价
+			function currectTotalPrice(obj){
+				var currentNum = parseInt($(obj).parent().find("input[class*=inp]").val());
+				var span = $(obj).parent().find('[name="priceSpan"]');
+				var price = 0;
+				span.each(function(){
+					var stepNum = parseInt($(this).find('[name="stepNum"]').val());
+					var productPrice = $(this).find('[name="productPrice"]').val();
+					if(price==0){
+						price = productPrice;
+					}
+					if(currentNum<stepNum){
+						return false;
+					}
+					price = productPrice;
+				});
+				$(obj).parent().parent().parent().find('[name="unitPice"]').text(price);
+				// 优惠后的价格
+				var discount = $(obj).parent().parent().parent().find('[name="discount"]').val();
+                var promotionPrice = new BigDecimal((price * discount).toString());
+                promotionPrice = promotionPrice.setScale(6,BigDecimal.ROUND_HALF_UP);
+                $(obj).parent().parent().parent().find('[name="promotionPrice"]').text(promotionPrice);
+
+				//当前价格和
+				var totalCurrentPrice = new BigDecimal(promotionPrice.toString()).multiply(new BigDecimal(currentNum.toString())).setScale(6,BigDecimal.ROUND_HALF_UP);
+				//是否有料盘
+				var assocCartPrice = $(obj).parent().parent().parent().find('[name="assocCartPrice"]').text();
+				if(null != assocCartPrice && "" !=assocCartPrice){
+					totalCurrentPrice = new BigDecimal(totalCurrentPrice.toString()).add(new BigDecimal(assocCartPrice)).setScale(6,BigDecimal.ROUND_HALF_UP);
+				}
+				$(obj).parent().parent().parent().find("[name='currentPrice']").text(totalCurrentPrice);
+				totalPrice();
+			};
+			function totalPrice(){
+				var totalNum = 0;
+				var totalPrice = 0;
+				$(".cartProChk").each(function(){
+					if(this.checked==true){
+						totalNum = totalNum+1;
+						var price = $(this).parent().parent().find("[name='currentPrice']").text();
+						totalPrice =   new BigDecimal(totalPrice.toString()).add(new BigDecimal(price)).setScale(2,BigDecimal.ROUND_HALF_UP);
+					}
+
+				});
+				$("#totalPrice").html(totalPrice.toString());
+				$("#totalNum").html(totalNum);
+			};
+
+		},
+		initData: function() {
+		},
+		afterInitData:function(){
+
+		},
+		}
+		 //删除购物车商品
+        function delCartPro(id){
+            layer.confirm("是否删除该商品？",{icon: 3, title:'提示'},function(index){
+                //点击确认处理
+                window.location.href="cart/delete.html?cartIds="+id;
+            });
+        }
+        //删除选中商品
+        function delSlcPro(){
+            var ids = geIds();
+            if(""==ids){
+            	layer.confirm("请选择需要删除的商品",{icon: 5, title:'提示'},function(index){
+	                layer.close(index);
+	                return false;
+	            });
+            }else{
+	            layer.confirm("是否删除选中的商品？",{icon: 3, title:'提示'},function(index){
+					window.location.href="cart/delete.html?cartIds="+ids;
+	                layer.close(index);
+	            });
+            }
+        };
+		 //结算
+		function goOrderCheck(){
+            wyComponent.login.show(function () {
+                var total = $("#totalPrice").text();
+                var min = 0;
+                    min = 0;
+                if( new BigDecimal(min.toString()).compareTo(new BigDecimal(total.toString()))>0){
+                    layer.msg("订单合计至少为￥0 才能结算",{icon:0})
+                    return false;
+                }
+
+                var ids ="";
+                var num  = 0;
+                var counts ="";
+                $(".cartProChk").each(function(){
+                    if(this.checked==true){
+                        var id = $(this).parent().find("input[name='cartId']").val();
+                        var count = $(this).parent().parent().find("input[class*=inp]").val();
+                        if(num ==0 ){
+                            ids = id;
+                            counts = count;
+                        }else{
+                            ids = ids+";"+id;
+                            counts = counts+";"+count;
+                        }
+                        num = num + 1;
+                    }
+                });
+                if(""==ids){
+                    layer.confirm("请选择需要结算的商品？",{icon: 3, title:'提示'},function(index){
+                        layer.close(index);
+                        return false;
+                    });
+                }else{
+                    window.location.href="cart/ordercheck.html?cartIds="+ids+"&counts="+counts;
+                }
+            });
+		};
+		function geIds(){
+			var ids ="";
+			var num  = 0;
+			$(".cartProChk").each(function(){
+				 if(this.checked==true){
+					var id = $(this).parent().find("input[name='cartId']").val();
+					if(num ==0 ){
+						ids = id;
+					}else{
+						ids = ids+";"+id;
+					}
+					num = num + 1;
+				}
+			});
+			return ids;
+		}
+
+
+        $(document).ready(function(){
+			orderCheckObj.initPage();
+             $("#proCheckAll").trigger("click");
+		});
+        </script>
+<div class="l-btmBanner">
+    <div class="btmBanner clear">
+        <div class="btmBannerItm">
+            <span class="btmBannerItm__mod1"></span>
+            <p class="text-bold">品质保障</p>
+            <p class="text-muted fs-12">原厂渠道&nbsp;&nbsp;购物无忧</p>
+        </div>
+        <div class="btmBannerItm">
+            <span class="btmBannerItm__mod2"></span>
+            <p class="text-bold">一站采购</p>
+            <p class="text-muted fs-12">正品元件&nbsp;&nbsp;应有尽有</p>
+        </div>
+        <div class="btmBannerItm">
+            <span class="btmBannerItm__mod3"></span>
+            <p class="text-bold">极速物流</p>
+            <p class="text-muted fs-12">闪电发货&nbsp;&nbsp;在线跟踪</p>
+        </div>
+        <div class="btmBannerItm--last">
+            <span class="btmBannerItm__mod4"></span>
+            <p class="text-bold">会员权益</p>
+            <p class="text-muted fs-12">非凡体验&nbsp;&nbsp;贴心服务</p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-wrap">
+        <dl class="footer-nav clear">
+            <dd>
+                <h4>商城介绍</h4>
+                <ul>
+                    <li><a href="/page/2.html" rel="nofollow">关于唯样</a></li>
+                    <li><a href="/help/16.html" rel="nofollow">联系我们</a></li>
+                    <li><a href="/page/1.html" rel="nofollow">优势资源</a></li>
+                </ul>
+            </dd>
+            <dd>
+                <h4>新手指南</h4>
+                <ul>
+                    <li><a href="/login.html" rel="nofollow">注册登录</a></li>
+                    <li><a href="/help/12.html" rel="nofollow">隐私协议</a></li>
+                    <li><a href="/help/2.html" rel="nofollow">发票须知</a></li>
+                </ul>
+            </dd>
+            <dd>
+                <h4>支付方式</h4>
+                <ul>
+                    <li><a href="/help/9.html" rel="nofollow">支付安全</a></li>
+                    <li><a href="/help/10.html" rel="nofollow">银行转账</a></li>
+                </ul>
+            </dd>
+            <dd class="border-rnone">
+                <h4>售后服务</h4>
+                <ul>
+                    <li><a target="_blank" href="http://q.url.cn/ABDLIf?_type=wpa&qidian=true" rel="nofollow">在线客服</a></li>
+                    <li><span>客服电话：400-870-9968</span></li>
+                </ul>
+            </dd>
+        </dl>
+        <div class="footer-att">
+            <img src="static/picture/footer-att-6db8dcbb70e5982ee5bcecce613e1e07.jpg" />
+        </div>
+        <div class="footerInxNav clear">
+            <a class="footerInxNav__cap" style="margin: 0;color: #333;" href="/microstation/index.html">字母索引：</a>
+            <div class="footerInxNav__con">
+                <a href="/microstation/productlist/A-1.html">A</a>
+                <a href="/microstation/productlist/B-1.html">B</a>
+                <a href="/microstation/productlist/C-1.html">C</a>
+                <a href="/microstation/productlist/D-1.html">D</a>
+                <a href="/microstation/productlist/E-1.html">E</a>
+                <a href="/microstation/productlist/F-1.html">F</a>
+                <a href="/microstation/productlist/G-1.html">G</a>
+                <a href="/microstation/productlist/H-1.html">H</a>
+                <a href="/microstation/productlist/I-1.html">I</a>
+                <a href="/microstation/productlist/J-1.html">J</a>
+                <a href="/microstation/productlist/K-1.html">K</a>
+                <a href="/microstation/productlist/L-1.html">L</a>
+                <a href="/microstation/productlist/M-1.html">M</a>
+                <a href="/microstation/productlist/N-1.html">N</a>
+                <a href="/microstation/productlist/O-1.html">O</a>
+                <a href="/microstation/productlist/P-1.html">P</a>
+                <a href="/microstation/productlist/Q-1.html">Q</a>
+                <a href="/microstation/productlist/R-1.html">R</a>
+                <a href="/microstation/productlist/S-1.html">S</a>
+                <a href="/microstation/productlist/T-1.html">T</a>
+                <a href="/microstation/productlist/U-1.html">U</a>
+                <a href="/microstation/productlist/V-1.html">V</a>
+                <a href="/microstation/productlist/W-1.html">W</a>
+                <a href="/microstation/productlist/X-1.html">X</a>
+                <a href="/microstation/productlist/Y-1.html">Y</a>
+                <a href="/microstation/productlist/Z-1.html">Z</a>
+                <a href="/microstation/productlist/0-1.html">0</a>
+                <a href="/microstation/productlist/1-1.html">1</a>
+                <a href="/microstation/productlist/2-1.html">2</a>
+                <a href="/microstation/productlist/3-1.html">3</a>
+                <a href="/microstation/productlist/4-1.html">4</a>
+                <a href="/microstation/productlist/5-1.html">5</a>
+                <a href="/microstation/productlist/6-1.html">6</a>
+                <a href="/microstation/productlist/7-1.html">7</a>
+                <a href="/microstation/productlist/8-1.html">8</a>
+                <a href="/microstation/productlist/9-1.html">9</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="af-footer">
+    <div class="footer-btm">
+        <p>
+            <a href="/help/1.html" target="_blank" rel="nofollow">新手上路</a>
+            <a href="/help/3.html" target="_blank" rel="nofollow">免责声明</a>
+            <a href="/help/13.html" target="_blank" rel="nofollow">销售条款</a>
+            <a href="/help/16.html" target="_blank" rel="nofollow">联系我们</a>
+            <a href="http://tech.oneyac.com" target="_blank">唯样资讯</a>
+        </p>
+        <p>Copyright © 2018 厦门唯样科技有限公司&nbsp;&nbsp;闽ICP备17005748号-1</p>
+    </div>
+    <div class="footer-logo">
+        <a class="footer-lgItm">
+            <img src="static/picture/footer-logo-zfb-bfff77e8962851b979619ecfd32edd59.jpg" />
+        </a>
+        <a class="footer-lgItm">
+            <img src="static/picture/footer-logo-wx-8971bf5ca438f2453bbd72d8f34d24e5.jpg" />
+        </a>
+        <a class="footer-lgItm">
+            <img src="static/picture/footer-logo-yl-4652f11dad6991c18833d3a37efe7e13.jpg" />
+        </a>
+        <a class="footer-lgItm">
+            <img src="static/picture/footer-logo-sfyz-07801c8236de2724e89466618099a8b1.jpg" />
+        </a>
+        <a class="footer-lgItm">
+            <img src="static/picture/footer-logo-rz-7b5f9b193edfa076b7ea5939edb6e57e.jpg" />
+        </a>
+    </div>
+</div>
+</body>
+</html>

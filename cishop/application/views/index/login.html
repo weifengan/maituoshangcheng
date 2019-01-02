@@ -1,0 +1,374 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>用户登录_电子元器件采购网/网上商城-唯样商城-被动元器件全线代理直供平台</title>
+		<meta name="description" content="用户登录，电子元器件采购网，电子元器件网上商城，唯样商城，是电子元器件采购首选的电商平台及网上商城，国内领先的被动元器件全线代理直供平台，以自营现货供应电子元器件为主营业务，致力于满足客户多品种、小批量、高质量的采购需求。" />
+		<meta name="keywords" content="用户登录，电子元器件采购网，电子元器件网上商城，电子，元器件，电子元件，被动元件，元器件电商，元器件平台，元器件采购，元器件交易网，样品商城" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="renderer" content="webkit">
+		<meta name="applicable-device" content="pc">
+		<link type="text/css" rel="stylesheet" href="<?=base_url()?>static/index/css/style.css" />
+		<!--[if IE 8]>
+<script type="text/javascript" src="static/js/es5-shim.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/layer.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/validate.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/common.js"></script>
+<script type="text/javascript" src="<?=base_url()?>static/index/js/big.decimal.js"></script>
+
+		<body>
+			<div class="header_lg">
+				<div class="wraper">
+					<h1 class="logo fl">
+            <a href="<?=site_url()?>index/home/" title="迈拓恒科商城">
+                <img alt="迈拓恒科商城" src="<?=base_url()?>static/index/picture/head-logo.png">
+            </a>
+        </h1>
+				</div>
+			</div>
+			<div class="lg-main">
+				<div class="wraper">
+					<div class="lg-filler fl">
+						<a title="原厂库存，年终钜惠！" href="/product/specical_stock.html"><img alt="优惠库存" src="<?=base_url()?>static/index/picture/yhkc-lg.jpg" /></a>
+					</div>
+					<div class="lg-boxwrp fr">
+						<div class="lg-box" id="lgBox">
+							<h3 js-tab-inx="lgtab" class="lg-tab clear">
+                    <a href="javascript:void(0);" js-tab-item="1" class="lg-tab-item is-active">账号登录</a>
+                    <a href="javascript:void(0);" js-tab-item="2" class="lg-tab-item">免密码登录</a>
+                </h3>
+							<p data-id="errTip" class="lg-msg" id="errTip"></p>
+							<div js-tab-con="lgtab">
+								<div js-tab-item="1" class="lg-form is-active">
+									<form data-id="generalLoginForm" action="/login.html" method="post">
+										<div class="lg-form-row">
+											<span class="input-lab">账号</span>
+											<input class="input" name="userName" value="" placeholder="用户名/手机号码" type="text">
+										</div>
+										<div class="lg-form-row">
+											<span class="input-lab">密码</span>
+											<input name="password" placeholder="密码" class="input" type="password">
+										</div>
+										<div class="lg-form-row">
+											<script type="text/javascript" charset="utf-8" src="<?=base_url()?>static/index/js/nc.js"></script>
+											<div id="login_afs_with_password" class="nc-container" style="width:100%"></div>
+											<style type="text/css">
+												#login_afs_with_password * {
+													box-sizing: content-box;
+												}
+
+												#login_afs_with_password .nc_scale span {
+													height: 40px;
+													line-height: 40px;
+												}
+
+												#login_afs_with_password div.nc_scale {
+													height: 42px;
+												}
+											</style>
+
+											<input hidden id="afs_session" name="afs_session">
+											<input hidden id="afs_sig" name="afs_sig">
+											<input hidden id="afs_scene" name="afs_scene">
+											<input hidden id="afs_token" name="afs_token">
+										</div>
+										<button id="login_account_submit_btn" type="submit" class="lg-subicn mt15" href="javascript:void(0);">立即登录</button>
+									</form>
+									<div class="clear lg-form-row">
+										<p class="fl fs-12">还没有账号？
+											<a class="text-link" href="<?=site_url()?>/index/register">立即注册</a>
+										</p>
+										<a class="fr fs-12" href="/password/forgotpassword.html">忘记密码</a>
+									</div>
+								</div>
+								<div js-tab-item="2" class="lg-form">
+									<form data-id="dynamicLoginForm" action="/login/dynamic_login.html" method="post">
+										<div class="lg-form-row"><span class="input-lab">手机号</span>
+											<input class="input" name="mobile" placeholder="手机号码" type="text" id="mobile">
+										</div>
+										<div class="lg-form-row">
+											<script type="text/javascript" charset="utf-8" src="<?=base_url()?>static/index/js/nc.js"></script>
+											<div id="login_afs_with_message" class="nc-container" style="width:100%"></div>
+											<style type="text/css">
+												#login_afs_with_message * {
+													box-sizing: content-box;
+												}
+
+												#login_afs_with_message .nc_scale span {
+													height: 40px;
+													line-height: 40px;
+												}
+
+												#login_afs_with_message div.nc_scale {
+													height: 42px;
+												}
+											</style>
+											<script type="text/javascript">
+												// 对外提供完成标志（全局变量）
+												if(typeof aliyun_afs == "undefined") {
+													aliyun_afs = new Object();
+												}
+												aliyun_afs.login_afs_with_message = new Object();
+												aliyun_afs.login_afs_with_message.complete = false;
+												aliyun_afs.login_afs_with_message.data = "";
+												aliyun_afs.login_afs_with_message.token = ["FFFF0N0000000000672D", (new Date()).getTime(), Math.random()].join(':');
+												aliyun_afs.login_afs_with_message.opt = {
+													renderTo: "#login_afs_with_message",
+													appkey: "FFFF0N0000000000672D",
+													scene: "nc_message",
+													token: aliyun_afs.login_afs_with_message.token,
+													customWidth: ('100%'.indexOf("%") != -1 ? '100%' : parseInt('100%')),
+													callback: function(data) {
+														if(data.value == "pass") {
+															aliyun_afs.login_afs_with_message.complete = true;
+															aliyun_afs.login_afs_with_message.data = "afs_session=" + data.csessionid + "&afs_sig=" + data.sig +
+																"&afs_scene=nc_message&afs_token=" + aliyun_afs.login_afs_with_message.token;
+														}
+														// 对外提供回调函数
+														if(typeof aliyun_afs.login_afs_with_message.callback == 'function') {
+															aliyun_afs.login_afs_with_message.callback(data.csessionid, data.sig, "nc_message", aliyun_afs.login_afs_with_message.token, status);
+														}
+													},
+													error: function() {
+														// 测试用代码 start
+														layer.alert("验证码加载出错，请点刷新进行重试或联系QQ客服，谢谢!");
+													}
+
+												}
+
+												aliyun_afs.login_afs_with_message.reset = function() {
+													aliyun_afs.login_afs_with_message.data = "";
+													aliyun_afs.login_afs_with_message.complete = false;
+													aliyun_afs.login_afs_with_message.nc.reset();
+												}
+
+												aliyun_afs.login_afs_with_message.init = function() {
+													aliyun_afs.login_afs_with_message.nc = new noCaptcha(aliyun_afs.login_afs_with_message.opt)
+													aliyun_afs.login_afs_with_message.nc.upLang('cn', {
+														_startTEXT: "请按住滑块，拖动到最右边",
+														_yesTEXT: "验证通过",
+														_error300: "哎呀，出错了，点击<a href=\"javascript:aliyun_afs.login_afs_with_message.reset()\">刷新</a>再来一次",
+														_errorNetwork: "网络不给力，请<a href=\"javascript:aliyun_afs.login_afs_with_message.reset()\">点击刷新</a>",
+													});
+													aliyun_afs.login_afs_with_message.reset();
+												}
+											</script>
+										</div>
+										<div class="lg-form-row">
+											<span class="input-lab">验证码</span>
+											<input name="vecode" placeholder="验证码" class="input input-pin" type="text">
+											<button type="button" data-id="getPin" id="getPinIcn" class="getpin">发送验证码</button>
+										</div>
+										<button type="submit" class="lg-subicn mt15" href="javascript:void(0);">立即登录</button>
+									</form>
+								</div>
+							</div>
+							<div class="lg-othway">
+								<p class="lg-othway-h3">使用合作帐号登录</p>
+								<div class="lg-othway-con">
+									<a id="login_page_wx_href" class="ml10 text-muted" href="/weixin/qrcode_login/login"><i class="iconfont icon-weixin"></i>&nbsp;<span>微信</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btm-banner">
+				<div class="banner">
+				</div>
+			</div>
+			<div class="footer_lg">
+				<div class="wraper footer-btm">
+					<p>
+						<a href="/help/1.html" target="_blank">新手上路</a>
+						<span>|</span>
+						<a href="/help/3.html" target="_blank">免责声明</a>
+						<span>|</span>
+						<a href="/help/13.html" target="_blank">销售条款</a>
+						<span>|</span>
+						<a href="/help/14.html" target="_blank">售后服务</a>
+						<span>|</span>
+						<a href="/help/16.html" target="_blank">联系我们</a>
+
+					</p>
+					<p>Copyright © 2018 厦门唯样科技有限公司&nbsp;&nbsp;闽ICP备17005748号-1</p>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+
+					//tabs、placeholder
+					(function() {
+						var $box = $("#lgBox"),
+							$tabInx = $box.find("[js-tab-inx]"),
+							$tabCon = $box.find("[js-tab-con]");
+						//tabs
+						$tabInx.find("[js-tab-item]").on("click", function() {
+							var $this = $(this),
+								index = $this.attr("js-tab-item");
+							$this.addClass("is-active").siblings(".is-active").removeClass("is-active");
+							$tabCon.find("[js-tab-item='" + index + "']").addClass("is-active").siblings(".is-active").removeClass("is-active");
+							if(index == 1) {
+								 layer.alert("账号登录方式");
+							} else if(index == 2) {
+								aliyun_afs.login_afs_with_message.init();
+							}
+						});
+						//IE8、9,placeholder
+						if($.isIE(8) || $.isIE(9)) {
+							//                $box.find("input").placeholder();
+							setTimeout(function() {
+								$("input[name='userName']").trigger("change");
+								$("input[name='password']").trigger("change");
+							}, 500);
+						}
+					})();
+
+					var $lgBox = $("#lgBox"),
+						$errTip = $lgBox.find("[data-id='errTip']");
+
+					function processFormDefaultValue() {
+						if(!$("input[name='userName']").val()) {
+							$("input[name='userName']").val(getUserNameFromCookie("login_user_name"));
+						}
+						if($("input[name='userName']").val()) {
+							$("input[name='password']").focus();
+						} else {
+							$("input[name='userName']").focus();
+						}
+					}
+
+					function processErrorTip() {
+						var errorMsg = '',
+							errorShow = '';
+						if(errorMsg != '') {
+							if(errorMsg === "limit") {
+								errorShow = "1小时内密码输入错误超过20次"
+							} else if(errorMsg === "disable") {
+								errorShow = "账号已被禁用";
+							} else if(errorMsg === "bad") {
+								errorShow = "账号密码错误";
+							} else if(errorMsg === "valid_error") {
+								errorShow = "验证出错";
+							}
+							$errTip.html(errorShow);
+						}
+						var dynamic_errorMsg = '';
+						if(dynamic_errorMsg != '') {
+							$("input[name='mobile']").val('');
+							$errTip.html(dynamic_errorMsg);
+							$lgBox.find("[js-tab-inx]").find("[js-tab-item]").eq(1).trigger("click");
+						}
+					}
+					processErrorTip();
+					processFormDefaultValue();
+
+					//账号登录
+					(function() {
+						var $box = $("#lgBox"),
+							$formGeneralLogin = $box.find("[data-id='generalLoginForm']"),
+							formGeneralLogin = $formGeneralLogin[0],
+							$err = $box.find("[data-id='errTip']");
+						$formGeneralLogin.submit(function() {
+							if(!Boolean(formGeneralLogin.userName.value)) {
+								$err.html("账号不能为空！");
+								$(formGeneralLogin.userName).focus();
+								return false;
+							};
+							if(!Boolean(formGeneralLogin.password.value)) {
+								$err.html("密码不能为空!");
+								$(formGeneralLogin.password).focus();
+								return false;
+							}
+							if(!aliyun_afs.login_afs_with_password.complete) {
+								$err.html("请先拖动滑块!");
+								return false;
+							}
+						});
+					})();
+
+					//自动登录
+					(function() {
+						var $box = $("#lgBox"),
+							$formDynamicLogin = $box.find("[data-id='dynamicLoginForm']"),
+							formDynamicLogin = $formDynamicLogin[0],
+							$err = $box.find("[data-id='errTip']");
+						$formDynamicLogin.submit(function() {
+							var phone = formDynamicLogin.mobile.value;
+							if(!Boolean(phone)) {
+								$err.html("手机不能为空！");
+								$(formDynamicLogin.mobile).focus();
+								return false;
+							}
+							var phoneRegExp = /^(1[0-9][0-9]{9})$/;
+							if(!phoneRegExp.test(phone)) {
+								$err.html("手机号格式不正确！");
+								$(formDynamicLogin.mobile).focus();
+								return false;
+							}
+							if(!Boolean(formDynamicLogin.vecode.value)) {
+								$err.html("验证码不能为空!");
+								$(formDynamicLogin.vecode).focus();
+								return false;
+							}
+						});
+					})()
+
+				});
+
+				function getUserNameFromCookie(key) {
+					if(document.cookie.length > 0) {
+						var c_start = document.cookie.indexOf(key + "=")
+						if(c_start != -1) {
+							c_start = c_start + key.length + 1
+							var c_end = document.cookie.indexOf(";", c_start)
+							if(c_end == -1) c_end = document.cookie.length;
+							return document.cookie.substring(c_start, c_end);
+						}
+					}
+					return ""
+				}
+
+				// 发送验证码 和 滑块
+				var pinIcn = $("#getPinIcn");
+				pinIcn.countDown({
+					srcWrd: pinIcn.html(),
+					countAfter: function() {
+						delete pinIcn.send;
+						aliyun_afs.login_afs_with_message.reset();
+					}
+				});
+				pinIcn.on("click", function() {
+					if(pinIcn.send) {
+						return;
+					}
+
+					var phoneRegExp = /^(1[0-9][0-9]{9})$/;
+					var errTip = $('#errTip');
+					var mobile = $('#mobile').val();
+					if(!Boolean(mobile)) {
+						errTip.html("请输入手机号！");
+						return false;
+					} else if(!phoneRegExp.test(mobile)) {
+						errTip.html("请输入正确手机号！");
+						return false;
+					} else if(!aliyun_afs.login_afs_with_message.complete) {
+						errTip.html("请先拖动滑块!");
+						return false;
+					}
+        });
+				// 滑块拖动后回调函数
+				aliyun_afs.login_afs_with_message.callback = function() {
+					$('#errTip').html("");
+				}
+
+			</script>
+		</body>
+
+</html>

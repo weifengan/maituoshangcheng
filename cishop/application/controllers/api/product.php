@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Product extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,22 +20,13 @@ class Category extends CI_Controller {
 	 */
 	public function index()
 	{
-		 echo 'category api';
+		 echo 'Product api';
 	}
 
 
-  public function GetAll(){
-     $catelist=$this->db->query("select * from category where cat_pid=0 order by 'desc'")->result();
-     foreach($catelist as $k=>$v){
-          $subs=$this->db->query("select * from category where cat_pid=".$v->id." order by 'desc'")->result();
-          $v->children=$subs;
-          if(count($subs)>0){
-                $v->ishaveChild=TRUE;
-            }else{
-              $v->ishaveChild=FALSE;
-          }
+  public function GetProductById($id){
+     $catelist=$this->db->query("select * from sku,product,category where product.product_catid= category.cat_id and sku.sku_proid=".$id)->result();
 
-     }
     echo json_encode($catelist,JSON_UNESCAPED_UNICODE);
   }
 }

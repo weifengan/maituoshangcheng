@@ -111,8 +111,8 @@
  									 	{
  								 ?>
  												<div class="allNav-lv1">
- 												 <a href="/search/product?categoryId=1207" class="allNav-lv1__cap">
- 													 <i class="iconfont <?=$item->icon?>"></i> <?=$item->title;?>
+ 												 <a href="/search/product?categoryId=<?=$item->cat_id?>" class="allNav-lv1__cap">
+ 													 <i class="iconfont <?=$item->cat_icon?>"></i> <?=$item->cat_name;?>
  												 </a>
 
  												 <div class="allNav-lv2">
@@ -121,7 +121,7 @@
  														foreach ($item->children as $key => $value){
  														?>
  				 										<li>
- 				 											<a href="/search/product?categoryId=1219"><?=$value->title?></a>
+ 				 											<a href="/search/product?categoryId=<?=$value->cat_id?>"><?=$value->cat_name?></a>
  				 										</li>
  				 								 		<?php } ?>
  				 									</ul>

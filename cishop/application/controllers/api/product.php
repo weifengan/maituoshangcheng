@@ -18,15 +18,18 @@ class Product extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	 public $product;
 	public function index()
 	{
-		 echo 'Product api';
+
+  		 echo 'Product api';
 	}
 
+  //通过iD获取商品信息
+	public function GetProductById($productid){
+       echo  "ID=".$productid;
+			   $this->load->model("ProductModel");
+ 			echo $this->ProductModel->test();
+	}
 
-  public function GetProductById($id){
-     $catelist=$this->db->query("select * from sku,product,category where product.product_catid= category.cat_id and sku.sku_proid=".$id)->result();
-
-    echo json_encode($catelist,JSON_UNESCAPED_UNICODE);
-  }
 }

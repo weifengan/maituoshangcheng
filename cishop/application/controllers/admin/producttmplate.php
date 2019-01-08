@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Goods extends CI_Controller {
+class ProductTemplate extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,6 @@ class Goods extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('admin/goods.html');
+		$this->load->view('admin/product-template.html');
 	}
 }

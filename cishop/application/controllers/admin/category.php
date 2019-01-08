@@ -20,6 +20,17 @@ class Category extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('admin/category.html');
+		$this->load->model("CategoryModel");
+		$catelist=$this->CategoryModel->GetAll();
+    $data["data"]=$catelist;
+		$this->load->view('admin/category-index.html',$data);
+	}
+
+	public function edit($id){
+			$this->load->model("CategoryModel");
+			$cate=$this->CategoryModel->GetCategoryById($id);
+			$data['cate']=$cate;
+			var_dump($cate);
+      $this->load->view("admin/category_edit.html",$data);
 	}
 }

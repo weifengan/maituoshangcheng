@@ -4,19 +4,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>迈拓恒科商城管理后台</title>
-<link rel="stylesheet" href="<?=base_url()?>static/admin/layui/css/layui.css">
-<link rel="stylesheet" href="<?=base_url()?>static/admin/css/myadmin.css">
+<link rel="stylesheet" href="<?=base_url()?>/static/admin/css/myadmin.css">
+<link rel="stylesheet" href="<?=base_url()?>/static/admin/layui/css/layui.css">
+
+<style>
+  .page_title{
+    height:30px;
+    font-size: 24px;
+    padding:12px;
+    border:1px solid #F00;
+    float:left;
+    padding-bottom: 12px;
+  }
+</style>
 </head>
 
 <body>
-  <table class="layui-hide" id="test" lay-filter="test" style="width:100%;"></table>
+   <div style="height:62px;display:block">
+   <div class="page_title">分类管理</div>
+   <div class="layui-btn-container" style="float:right;padding:15px;">
+     <button class="layui-btn layui-btn-sm" onclick="add_category()">添加分类</button>
+     <button class="layui-btn layui-btn-sm" onclick="delete_category()">删除分类</button>
+  </div>
+</div>
+    <table class="layui-hide" id="categorytable" lay-filter="categorytable" style="width:100%;"></table>
+
+  <!--常用工具按钮-->
+  <script type="text/html" id="actionToolBar">
+
+  </script>
 
   <script type="text/html" id="toolbarDemo">
+    <div class="layui-row">
     <div class="layui-btn-container">
       <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
       <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
       <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
     </div>
+  </div>
+   <div class="layui-row">
+     <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+     <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+     <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+   </div>
   </script>
 
   <script type="text/html" id="barDemo">
@@ -29,88 +59,32 @@
    <input type="checkbox" name="cat_enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="enableDemo" {{ d.cat_enabled == "1" ? 'checked' : '' }}>
  </script>
 
-
-
-
-
-<!--
-
-<table class="layui-table" style="margin:30px; width:95%;">
-<tr >
-  <th colspan="5">
-  <span style="float:left;padding:10px;font-size:20px;"><h3>分类管理</h3></span>
-
-  <div class="layui-btn-container" style="text-align:right;display:block">
-    <button class="layui-btn layui-btn-sm" lay-event="category_add">添加分类</button>
-  </div>
-
-  </th>
-</tr>
-        <tr>
-            <th>排序</th>
-            <th>类别名称</th>
-            <th>状态</th>
-            <th>创建时间</th>
-            <th>操作</th>
-        </tr>
-        <?php foreach ($data as $vo): ?>
-
-        <tr>
-            <th><b><?=$vo->cat_order?></b>
-            <th><b><?=$vo->cat_name?></b>
-            </th>
-            <th>
-                <span class="layui-badge layui-bg-green">使用中</span>
-            </th>
-            <th><?=$vo->createdate?></th>
-            <th>
-                <a class="layui-btn layui-btn-xs" lay-event="edit" onclick="category_edit(<?=$vo->cat_id?>)">编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="category_delte(<?=$vo->cat_id?>)">删除</a>
-           </th>
-        </tr>
-            <?php foreach ($vo->children as $so): ?>
-
-            <tr>
-                <th><b><?=$vo->cat_order?></b>
-                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$so->cat_name?></th>
-                <th>
-                    <span class="layui-badge layui-bg-green">使用中</span>
-
-                <th><?=$so->createdate?></th>
-                <th> <a class="layui-btn layui-btn-xs" lay-event="edit" onclick="category_edit(<?=$so->cat_id?>)">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="category_edit(<?=$vo->cat_id?>)">删除</a></th>
-            </tr>
-              <?php endforeach; ?>
-        <?php endforeach; ?>
-    </table>
--->
 <script src="<?=base_url()?>static/admin/layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+var table;
 layui.use('table', function(){
-  var table = layui.table;
-
-
+  table = layui.table;
   table.render({
-    elem: '#test'
-    ,url:'../api/category/getall'
-    ,toolbar: '#toolbarDemo'
+    elem: '#categorytable'
+    ,url:'<?=site_url()?>/api/category/getall'
+    ,toolbar: '#actionToolBar'
     ,title: '用户数据表'
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
-      ,{field:'cat_id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-      ,{field:'cat_name', title:'类别名称', width:200}
-      ,{field:'cat_icon', title:'图标', width:300}
-      ,{field:'cat_enable', title:'状态', width:150, templet: '#enableTpl'}
-      ,{field:'cat_order', title:'排序', width:80}
-       ,{field:'createdate', title:'创建日期', width:250}
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+      ,{field:'cat_id', title:'ID', width:80, fixed: 'left'}
+      ,{field:'cat_name', title:'类别名称', width:260}
+      ,{field:'cat_icon', title:'图标'}
+      ,{field:'cat_enable', title:'状态', templet: '#enableTpl'}
+      ,{field:'cat_order', title:'排序'}
+       ,{field:'createdate', title:'创建日期'}
+      ,{align:"center",title:'操作', toolbar: '#barDemo'}
     ]]
     ,page: true
   });
 
   //头工具栏事件
-  table.on('toolbar(test)', function(obj){
+  table.on('toolbar(categorytable)', function(obj){
     var checkStatus = table.checkStatus(obj.config.id);
     switch(obj.event){
       case 'getCheckData':
@@ -128,7 +102,7 @@ layui.use('table', function(){
   });
 
   //监听行工具事件
-  table.on('tool(test)', function(obj){
+  table.on('tool(categorytable)', function(obj){
     var data = obj.data;
     //console.log(obj)
     if(obj.event === 'del'){
@@ -137,25 +111,25 @@ layui.use('table', function(){
         layer.close(index);
       });
     } else if(obj.event === 'edit'){
-      layer.prompt({
-        formType: 2
-        ,value: data.email
-      }, function(value, index){
-        obj.update({
-          email: value
-        });
-        layer.close(index);
-      });
+      category_edit(obj.cat_id);
     }
   });
 });
+function add_category(){
+  alert("add");
+}
+function delete_category(){
+  var checkStatus = table.checkStatus("categorytable");
+  var data = checkStatus.data;
+  layer.alert(JSON.stringify(data));
 
+}
 function category_edit(id){
   layer.open({
             type: 2,
             title: "编辑类别",
             area: ['800px', '600px'],
-            content: './category/edit/' + id,
+            content: '<?=base_url()?>static/admin/category/edit/' + id,
         });
 }
 </script>

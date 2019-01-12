@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 	{
 		//获取分类
 		$this->load->model("CategoryModel");
-		$catelist=$this->CategoryModel->GetAll();
+		$catelist=$this->CategoryModel->GetIndexAll();
 
     $data["catelist"]=$catelist;
 		//var_dump($catelist);

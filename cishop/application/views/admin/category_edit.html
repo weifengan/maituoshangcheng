@@ -12,25 +12,36 @@
 
   <div class="layui-container">
   <div style="font-weight:bold; margin:15px; text-align:center;"><h2>编辑分类</h2></div>
-  <form class="layui-form" action="">
+  <form class="layui-form" action="<?=site_url()?>/admin/category/update" method="post">
     <div class="layui-form-item">
       <div class="layui-inline">
       <label class="layui-form-label">分类名称</label>
       <div class="layui-input-block">
-        <input type="text" name="cat_name" lay-verify="cat_name" autocomplete="off" placeholder="请输入分类标题" class="layui-input" value="<?=$cate[0]->cat_name?>">
+        <input type="text" name="cat_name" lay-verify="cat_name" autocomplete="off" placeholder="请输入分类标题" class="layui-input" value="<?=$cate->cat_name?>">
       </div>
       </div>
     </div>
 
+    <input type="text" name="cat_id" id="cat_id" value="<?=$cate->cat_id?>"  hidden/>
     <div class="layui-form-item">
       <div class="layui-inline">
-          <label class="layui-form-label">所属分类</label>
+          <label class="layui-form-label">所属父级:</label>
           <div class="layui-input-block">
             <select name="cat_pid">
-              <option value="0">请选择所属类别名称</option>
-              <option value="1">西湖区</option>
-              <option value="2">余杭区</option>
-              <option value="3">临安市</option>
+              <option value="0">无</option>
+                <?php foreach($list as $key=>$value){ ?>
+                      <?php
+                           if($cate->cat_pid===$value->cat_id){
+                      ?>
+                      <option value="<?=$value->cat_id?>" selected=""><?=$value->cat_name?></option>
+                      <?php
+                        }else{
+                      ?>
+                      <option value="<?=$value->cat_id?>" ><?=$value->cat_name?></option>
+                      <?php
+                        }
+                  }
+                 ?>
             </select>
           </div>
       </div>
@@ -38,7 +49,12 @@
        <div class="layui-inline">
            <label class="layui-form-label">是否启用</label>
            <div class="layui-input-block">
-             <input type="checkbox" checked="checked" name="cat_enabled" lay-skin="switch" lay-filter="switchTest" lay-text="启用|禁用">
+             <?php  if($cate->cat_enabled=="1"){?>
+               <input type="checkbox" checked lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
+             <?php }else{ ?>
+                <input type="checkbox"   lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
+             <?php } ?>
+             <input type="text" name="cat_enabled" id="cat_enabled" value="<?=$cate->cat_enabled?>"  hidden/>
            </div>
        </div>
     </div>
@@ -48,13 +64,16 @@
       <div class="layui-inline">
           <label class="layui-form-label">分类图标</label>
           <div class="layui-input-block">
-
-          <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF; "></i>
-           <button class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:30px; margin-top:-15px;">修改图标</button>
-
-        </div>
-
+            <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF; "></i>
+         </div>
       </div>
+        <div class="layui-inline">
+          <input type="text" name="cat_icon"  class="layui-input"  value="<?=$cate->cat_icon?>"/>
+         </div>
+
+        <div class="layui-inline">
+           <button class="layui-btn ">修改图标</button>
+        </div>
     </div>
 
 
@@ -62,11 +81,26 @@
       <div class="layui-inline">
       <label class="layui-form-label">排序索引</label>
       <div class="layui-input-block">
-        <input type="text" name="cat_order" lay-verify="cat_order" autocomplete="off" placeholder="值越大越显示靠前" class="layui-input" value="<?=$cate[0]->cat_order?>">
+        <input type="text" name="cat_order" lay-verify="cat_order" autocomplete="off" placeholder="值越大越显示靠前" class="layui-input" value="<?=$cate->cat_order?>">
       </div>
       </div>
     </div>
 
+
+    <div class="layui-form-item">
+      <div class="layui-inline">
+      <label class="layui-form-label">创建时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="createdate" lay-verify="createdate" autocomplete="off" class="layui-input" value="<?=$cate->createdate?>" disabled>
+      </div>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
 </div>
 
 </body>
@@ -74,6 +108,16 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 layui.use('table', function(){
+  $=layui.$;
+  var form = layui.form;
   var table = layui.table;
+
+
+
+  //监听指定开关
+  form.on('switch(enableSwitch)', function(data){
+    $("cat_enabled").value="33";
+      document.getElementById("cat_enabled").value=this.checked ? 1:0;
+  });
 });
 </script>

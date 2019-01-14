@@ -44,19 +44,34 @@ class Category extends CI_Controller {
 			"cat_id"=>$this->input->post('cat_id'),
 			"cat_name"=>$this->input->post("cat_name"),
 			"cat_pid"=>$this->input->post("cat_pid"),
-			"cat_enabled"=>$this->input->post("cat_enabled")
+			"cat_enabled"=>$this->input->post("cat_enabled"),
+			"cat_order"=>$this->input->post("cat_order"),
+				"cat_icon"=>$this->input->post("cat_icon"),
 		);
 
 		$this->load->model("CategoryModel");
     $result=$this->CategoryModel->UpdateCategory($data);
-		$tmp='var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);';
-		if($result=="1"){
-			echo '<script>alert('.$result.')</script>';
-
-		}else{
-			echo '<script>alert("更新分类失败")</script>';
-		}
-
-
+ 		$obj=array("result"=>$result);
+		echo json_encode($obj);
 	}
+
+	public function delete(){
+		$data=array(
+			"cat_id"=>$this->input->post('cat_id'),
+			"deleted"=>1
+		);
+		$this->load->model("CategoryModel");
+		$result=$this->CategoryModel->UpdateCategory($data);
+		$obj=array("result"=>$result);
+		echo json_encode($obj);
+	}
+
+	public function addnew(){
+		$this->load->model("CategoryModel");
+		$catelist=$this->CategoryModel->GetIndexAll();
+    $data["list"]=$catelist;
+		$this->load->view("admin/category_new.html",$data);
+	}
+
+
 }

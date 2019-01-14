@@ -66,6 +66,7 @@
 var table;
 layui.use('table', function(){
   table = layui.table;
+  $ = layui.$;
   table.render({
     elem: '#categorytable'
     ,url:'<?=site_url()?>/api/category/GetAdminAll'
@@ -74,6 +75,7 @@ layui.use('table', function(){
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field:'cat_id', title:'ID', width:80, fixed: 'left'}
+      ,{field:'deleted', title:'已删除',width:80}
       ,{field:'cat_icon', title:'图标',align:"center",width:80,templet:"#category_iconwraper"}
       ,{field:'cat_name', title:'类别名称', width:260,templet:"#category_titlewraper"}
       ,{field:'cat_enabled', title:'状态', templet: '#enableTpl'}
@@ -87,12 +89,35 @@ layui.use('table', function(){
   //监听行工具事件
   table.on('tool(categorytable)', function(obj){
     var data = obj.data;
+
     //console.log(obj)
     if(obj.event === 'delete'){
       layer.confirm('真的删除行么', function(index){
         obj.del();
-        layer.close(index);
-      });
+        var params={
+          cat_id:data.cat_id,
+          cat_delete:1
+        };
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url()?>/admin/category/delete',
+            data: params,
+            dataType: 'json',
+            success: function (response) {
+              if(response.result==true){
+                layer.alert("删除类别OK",{icon:1},function(index){
+                  layer.close(index);
+                  location.reload();
+                });
+              }else{
+                layer.alert("删除类别失败!",{icon:1},function(index){
+                  layer.close(index);
+                  location.reload();
+                });
+              }
+            }
+          });
+       });
     } else if(obj.event === 'edit'){
       //编辑类别
       layer.open({
@@ -100,17 +125,28 @@ layui.use('table', function(){
              title: "编辑类别",
              area: ['800px', '600px'],
              content: '<?=site_url()?>/admin/category/edit/' + data.cat_id,
-         });
+             end: function () {
+                location.reload();
+            }
+       });
     }
   });
 });
 
-//相关编辑函数
-function EditCageory(id){
-  Layui.alert(id);
-}
+
 function add_category(){
-  alert("add");
+  layer.open({
+         type: 2,
+         title: "添加新类别",
+         area: ['800px', '600px'],
+         content: '<?=site_url()?>/admin/category/addnew/',
+         end: function () {
+            location.reload();
+        }
+   });
+
+
+
 }
 function delete_category(){
   var checkStatus = table.checkStatus("categorytable");
@@ -118,12 +154,5 @@ function delete_category(){
   layer.alert(JSON.stringify(data));
 
 }
-function category_edit(id){
-  layer.open({
-         type: 2,
-         title: "编辑类别",
-         area: ['800px', '600px'],
-         content: '<?=site_url()?>/admin/category/edit/' + id,
-     });
-}
+
 </script>

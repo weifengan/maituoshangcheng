@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>添加新类别</title>
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/layui/css/layui.css">
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/myadmin.css">
+  <!--<script src="<?=base_url()?>/static/admin/js/zepto.min.js"></script>-->
+</head>
+
+<body>
+
+  <div class="layui-container">
+    <div style="font-weight:bold; margin:15px; text-align:center;">
+      <h2>添加新类别</h2>
+    </div>
+    <div class="layui-form">
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">分类名称</label>
+          <div class="layui-input-block">
+            <input type="text" name="cat_name" id="cat_name" lay-verify="cat_name" autocomplete="off" placeholder="请输入分类标题" class="layui-input" value="">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">所属父级:</label>
+          <div class="layui-input-block">
+            <select name="cat_pid" id="cat_pid">
+              <option value="0" selected>无</option>
+              <?php foreach($list as $key=>$value){ ?>
+              <option value="<?=$value->cat_id?>">
+                <?=$value->cat_name?>
+                <?php
+                  }
+                 ?>
+            </select>
+          </div>
+        </div>
+
+        <div class="layui-inline">
+          <label class="layui-form-label">是否启用</label>
+          <div class="layui-input-block">
+          <input type="checkbox" checked lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
+          <input type="text" name="cat_enabled" id="cat_enabled" value="1"  hidden/>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">分类图标</label>
+          <div class="layui-input-block">
+            <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <input type="text" name="cat_icon" id="cat_icon" class="layui-input" value="icon-cateId-1208" />
+        </div>
+
+        <div class="layui-inline">
+          <button class="layui-btn ">修改图标</button>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">排序索引</label>
+          <div class="layui-input-block">
+            <input type="text" name="cat_order" id="cat_order" lay-verify="cat_order" autocomplete="off" placeholder="值越大越显示靠前" class="layui-input" value="0">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" onclick="addNew()">立即添加</button>
+          <button type="button" class="layui-btn layui-btn-primary" onclick="CloseMe();">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+<script src="<?=base_url()?>static/admin/layui/layui.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+  var layer = layui.layer;
+  layui.use('table', function() {
+    $ = layui.$;
+    var form = layui.form;
+    var table = layui.table;
+
+    //监听指定开关
+    form.on('switch(enableSwitch)', function(data) {
+       document.getElementById("cat_enabled").value = this.checked ? 1 : 0;
+    });
+  });
+
+  function addNew() {
+    //从服务器获取appsig
+    var params = {
+      cat_name: $("#cat_name").val(),
+      cat_pid: $("#cat_pid").val(),
+      cat_icon: $("#cat_icon").val(),
+      cat_order: $("#cat_order").val(),
+      cat_enabled: $("#cat_enabled").val()
+    };
+    $.ajax({
+      type: 'POST',
+      url: '<?=site_url()?>/api/category/addnew',
+      data: params,
+      dataType: 'json',
+      success: function(response) {
+        if (response.result == true) {
+          layer.alert("添加类别成功!", {
+            icon: 1
+          }, function(index) {
+            CloseMe();
+          });
+        } else {
+          layer.alert("添加类别失败!", {
+            icon: 5
+          }, function(index) {
+            CloseMe();
+          });
+        }
+      },
+      error: function(xhr, errorType, error) {
+        layer.alert("添加类别失败!" + errorType, {
+          icon: 5
+        }, function(index) {
+          CloseMe();
+        });
+      }
+    });
+
+  }
+
+  function CloseMe() {
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index); //关闭当前页
+  }
+</script>

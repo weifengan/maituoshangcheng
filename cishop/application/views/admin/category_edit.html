@@ -1,123 +1,169 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>分类编辑</title>
-<link rel="stylesheet" href="<?=base_url()?>static/admin/layui/css/layui.css">
-<link rel="stylesheet" href="<?=base_url()?>static/admin/css/myadmin.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>分类编辑</title>
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/layui/css/layui.css">
+  <link rel="stylesheet" href="<?=base_url()?>static/admin/css/myadmin.css">
+  <!--<script src="<?=base_url()?>/static/admin/js/zepto.min.js"></script>-->
 </head>
 
 <body>
 
   <div class="layui-container">
-  <div style="font-weight:bold; margin:15px; text-align:center;"><h2>编辑分类</h2></div>
-  <form class="layui-form" action="<?=site_url()?>/admin/category/update" method="post">
-    <div class="layui-form-item">
-      <div class="layui-inline">
-      <label class="layui-form-label">分类名称</label>
-      <div class="layui-input-block">
-        <input type="text" name="cat_name" lay-verify="cat_name" autocomplete="off" placeholder="请输入分类标题" class="layui-input" value="<?=$cate->cat_name?>">
-      </div>
-      </div>
+    <div style="font-weight:bold; margin:15px; text-align:center;">
+      <h2>编辑分类</h2>
     </div>
+    <div class="layui-form">
 
-    <input type="text" name="cat_id" id="cat_id" value="<?=$cate->cat_id?>"  hidden/>
-    <div class="layui-form-item">
-      <div class="layui-inline">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">分类名称</label>
+          <div class="layui-input-block">
+            <input type="text" name="cat_name" id="cat_name" lay-verify="cat_name" autocomplete="off" placeholder="请输入分类标题" class="layui-input" value="<?=$cate->cat_name?>">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <input type="text" name="cat_id" id="cat_id" value="<?=$cate->cat_id?>" hidden />
           <label class="layui-form-label">所属父级:</label>
           <div class="layui-input-block">
-            <select name="cat_pid">
+            <select name="cat_pid" id="cat_pid">
               <option value="0">无</option>
-                <?php foreach($list as $key=>$value){ ?>
-                      <?php
+              <?php foreach($list as $key=>$value){ ?>
+              <?php
                            if($cate->cat_pid===$value->cat_id){
                       ?>
-                      <option value="<?=$value->cat_id?>" selected=""><?=$value->cat_name?></option>
-                      <?php
+              <option value="<?=$value->cat_id?>" selected="">
+                <?=$value->cat_name?>
+              </option>
+              <?php
                         }else{
                       ?>
-                      <option value="<?=$value->cat_id?>" ><?=$value->cat_name?></option>
-                      <?php
+              <option value="<?=$value->cat_id?>">
+                <?=$value->cat_name?>
+              </option>
+              <?php
                         }
                   }
                  ?>
             </select>
           </div>
+        </div>
+
+        <div class="layui-inline">
+          <label class="layui-form-label">是否启用</label>
+          <div class="layui-input-block">
+            <?php  if($cate->cat_enabled=="1"){?>
+            <input type="checkbox" checked lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
+            <?php }else{ ?>
+            <input type="checkbox" lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
+            <?php } ?>
+            <input type="text" name="cat_enabled" id="cat_enabled" value="<?=$cate->cat_enabled?>" hidden />
+          </div>
+        </div>
       </div>
 
-       <div class="layui-inline">
-           <label class="layui-form-label">是否启用</label>
-           <div class="layui-input-block">
-             <?php  if($cate->cat_enabled=="1"){?>
-               <input type="checkbox" checked lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
-             <?php }else{ ?>
-                <input type="checkbox"   lay-skin="switch" lay-filter="enableSwitch" lay-text="启用|禁用">
-             <?php } ?>
-             <input type="text" name="cat_enabled" id="cat_enabled" value="<?=$cate->cat_enabled?>"  hidden/>
-           </div>
-       </div>
-    </div>
 
-
-    <div class="layui-form-item">
-      <div class="layui-inline">
+      <div class="layui-form-item">
+        <div class="layui-inline">
           <label class="layui-form-label">分类图标</label>
           <div class="layui-input-block">
             <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF; "></i>
-         </div>
-      </div>
-        <div class="layui-inline">
-          <input type="text" name="cat_icon"  class="layui-input"  value="<?=$cate->cat_icon?>"/>
-         </div>
-
-        <div class="layui-inline">
-           <button class="layui-btn ">修改图标</button>
+          </div>
         </div>
-    </div>
-
-
-    <div class="layui-form-item">
-      <div class="layui-inline">
-      <label class="layui-form-label">排序索引</label>
-      <div class="layui-input-block">
-        <input type="text" name="cat_order" lay-verify="cat_order" autocomplete="off" placeholder="值越大越显示靠前" class="layui-input" value="<?=$cate->cat_order?>">
-      </div>
-      </div>
-    </div>
-
-
-    <div class="layui-form-item">
-      <div class="layui-inline">
-      <label class="layui-form-label">创建时间</label>
-      <div class="layui-input-block">
-        <input type="text" name="createdate" lay-verify="createdate" autocomplete="off" class="layui-input" value="<?=$cate->createdate?>" disabled>
-      </div>
-      </div>
-    </div>
-    <div class="layui-form-item">
-      <div class="layui-input-block">
-          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-inline">
+          <input type="text" name="cat_icon" id="cat_icon" class="layui-input" value="<?=$cate->cat_icon?>" />
         </div>
+
+        <div class="layui-inline">
+          <button class="layui-btn ">修改图标</button>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">排序索引</label>
+          <div class="layui-input-block">
+            <input type="text" name="cat_order" id="cat_order" lay-verify="cat_order" autocomplete="off" placeholder="值越大越显示靠前" class="layui-input" value="<?=$cate->cat_order?>">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">创建时间</label>
+          <div class="layui-input-block">
+            <input type="text" name="createdate" id="createdate" lay-verify="createdate" autocomplete="off" class="layui-input" value="<?=$cate->createdate?>" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" onclick="updatedata()">立即提交</button>
+          <button type="button" class="layui-btn layui-btn-primary" onclick="CloseMe();">取消</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  </div>
 
 </body>
+
 <script src="<?=base_url()?>static/admin/layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-layui.use('table', function(){
-  $=layui.$;
-  var form = layui.form;
-  var table = layui.table;
+   var layer=layui.layer;
+   layui.use('table', function() {
+    $ = layui.$;
+    var form = layui.form;
+    var table = layui.table;
 
-
-
-  //监听指定开关
-  form.on('switch(enableSwitch)', function(data){
-    $("cat_enabled").value="33";
-      document.getElementById("cat_enabled").value=this.checked ? 1:0;
+    //监听指定开关
+    form.on('switch(enableSwitch)', function(data) {
+      $("cat_enabled").value = "33";
+      document.getElementById("cat_enabled").value = this.checked ? 1 : 0;
+    });
   });
-});
+
+  function updatedata() {
+    //从服务器获取appsig
+            var params = {
+              cat_name:$("#cat_name").val(),
+              cat_id:$("#cat_id").val(),
+              cat_pid:$("#cat_pid").val(),
+              cat_icon:$("#cat_icon").val(),
+              cat_order:$("#cat_order").val(),
+              cat_enabled:$("#cat_enabled").val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '<?=site_url()?>/api/category/update',
+                data: params,
+                dataType: 'json',
+                success: function (response) {
+                   if(response.result==true){
+                     layer.alert("更新分类信息OK",{icon:1},function(index){CloseMe();});
+                   }else{
+                     layer.alert("更新分类信息失败!",{icon:5},function(index){CloseMe();});
+                   }
+                 },
+                error: function (xhr, errorType, error) {
+                  layer.alert("更新分类信息失败!"+ errorType,{icon:5},function(index){CloseMe();});
+              }
+          });
+
+   }
+
+  function CloseMe(){
+    var index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);//关闭当前页
+  }
 </script>

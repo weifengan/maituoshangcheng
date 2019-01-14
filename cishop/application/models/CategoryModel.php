@@ -42,6 +42,10 @@ class CategoryModel extends CI_Model {
       $query = $this->db->where(array('cat_id'=>$data["cat_id"]))->update('category',$data);
       return $query;
     }
+
+    public function InsertNew($data){
+      return $this->db->insert('category',$data);
+    }
 }
 
 

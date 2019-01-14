@@ -39,7 +39,34 @@ class Category extends CI_Controller {
     echo json_encode($data,JSON_UNESCAPED_UNICODE);
   }
 
-	public function GetEditById($id){
+  public function Update(){
+		$data=array(
+			"cat_id"=>$this->input->post('cat_id'),
+			"cat_name"=>$this->input->post("cat_name"),
+			"cat_pid"=>$this->input->post("cat_pid"),
+			"cat_enabled"=>$this->input->post("cat_enabled"),
+			"cat_order"=>$this->input->post("cat_order"),
+				"cat_icon"=>$this->input->post("cat_icon")
+		);
 
+		$this->load->model("CategoryModel");
+    $result=$this->CategoryModel->UpdateCategory($data);
+ 		$obj=array("result"=>$result);
+		echo json_encode($obj);
+	}
+
+  public function AddNew(){
+		$data=array(
+ 			"cat_name"=>$this->input->post("cat_name"),
+			"cat_pid"=>$this->input->post("cat_pid"),
+			"cat_enabled"=>$this->input->post("cat_enabled"),
+			"cat_order"=>$this->input->post("cat_order"),
+			"cat_icon"=>$this->input->post("cat_icon")
+		);
+
+		$this->load->model("CategoryModel");
+    $result=$this->CategoryModel->AddNew($data);
+ 		$obj=array("result"=>$result);
+		echo json_encode($obj);
 	}
 }

@@ -22,8 +22,7 @@
         <div class="layui-inline">
           <label class="layui-form-label">品牌名称</label>
           <div class="layui-input-block">
-            <input type="text" name="brand_id" id="brand_id" value="<?=$brand->brand_id?>" hidden />
-             <input type="text" name="brand_name" id="brand_name" lay-verify="brand_name" autocomplete="off" placeholder="请输入品牌名称" class="layui-input" value="<?=$brand->brand_name?>">
+             <input type="text" name="brand_name" id="brand_name" lay-verify="brand_name" autocomplete="off" placeholder="请输入品牌名称" class="layui-input" value="">
           </div>
         </div>
       </div>
@@ -32,11 +31,11 @@
         <div class="layui-inline">
           <label class="layui-form-label">Logo图片</label>
           <div class="layui-input-block">
-            <img src="<?=$brand->brand_logo?>" />
+            <img src="/static/index/images/brand/avx-logo.png" />
           </div>
         </div>
         <div class="layui-inline">
-          <input type="text" name="brand_logo" id="brand_logo" class="layui-input"  placeholder="/static/index/images/brand/no-logo.png" value="<?=$brand->brand_logo?>" />
+          <input type="text" name="brand_logo" id="brand_logo" class="layui-input" value="/static/index/images/brand/avx-logo.png"?>
         </div>
 
         <div class="layui-inline">
@@ -49,23 +48,15 @@
         <div class="layui-inline">
           <label class="layui-form-label">官网地址</label>
           <div class="layui-input-block">
-            <input type="text" name="brand_website" id="brand_website" lay-verify="brand_website" autocomplete="off" placeholder="http://www.xxx.com" class="layui-input" value="<?=$brand->brand_website?>">
+            <input type="text" name="brand_website" id="brand_website" lay-verify="brand_website" autocomplete="off" placeholder="请输入官网地址" class="layui-input" value="">
           </div>
         </div>
       </div>
 
 
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <label class="layui-form-label">创建时间</label>
-          <div class="layui-input-block">
-            <input type="text" name="createdate" id="create_datetime" lay-verify="create_datetime" autocomplete="off" class="layui-input" value="<?=$brand->create_datetime?>" disabled>
-          </div>
-        </div>
-      </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="layui-btn" onclick="updatedata()">立即提交</button>
+          <button class="layui-btn" onclick="addNew()">立即提交</button>
           <button type="button" class="layui-btn layui-btn-primary" onclick="CloseMe();">取消</button>
         </div>
       </div>
@@ -91,32 +82,44 @@
     });
   });
 
-  function updatedata() {
+  function addNew() {
     //从服务器获取appsig
-            var params = {
-              brand_name:$("#brand_name").val(),
-              brand_id:$("#brand_id").val(),
-              brand_logo:$("#brand_logo").val(),
-              brand_website:$("#brand_website").val(),
-            };
-            $.ajax({
-                type: 'POST',
-                url: '<?=site_url()?>/api/brand/update',
-                data: params,
-                dataType: 'json',
-                success: function (response) {
-                   if(response.result==true){
-                     layer.alert("更新分类信息OK",{icon:1},function(index){CloseMe();});
-                   }else{
-                     layer.alert("更新分类信息失败!",{icon:5},function(index){CloseMe();});
-                   }
-                 },
-                error: function (xhr, errorType, error) {
-                  layer.alert("更新分类信息失败!"+ errorType,{icon:5},function(index){CloseMe();});
-              }
+    var params = {
+      brand_name: $("#brand_name").val(),
+      brand_logo: $("#brand_logo").val(),
+      brand_website: $("#brand_website").val(),
+    };
+    $.ajax({
+      type: 'POST',
+      url: '<?=site_url()?>/api/brand/addnew',
+      data: params,
+      dataType: 'json',
+      success: function(response) {
+        if (response.result == true) {
+          layer.alert("添加品牌成功!", {
+            icon: 1
+          }, function(index) {
+            CloseMe();
           });
+        } else {
+          layer.alert("添加品牌失败!", {
+            icon: 5
+          }, function(index) {
+            CloseMe();
+          });
+        }
+      },
+      error: function(xhr, errorType, error) {
+        layer.alert("添加品牌失败!" + errorType, {
+          icon: 5
+        }, function(index) {
+          CloseMe();
+        });
+      }
+    });
 
-   }
+  }
+
 
   function CloseMe(){
     var index = parent.layer.getFrameIndex(window.name);

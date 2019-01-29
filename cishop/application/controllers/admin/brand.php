@@ -20,6 +20,31 @@ class Brand extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('admin/brand.html');
+		$this->load->view('admin/brand-index.html');
+	}
+
+
+	public function edit($id){
+			$this->load->model("BrandModel");
+			$cate=$this->BrandModel->GetBrandById($id);
+			if(count($cate)<=0){
+				exit('参数错误!');
+			}else{
+				$data['brand']=$cate[0];
+			}
+      $this->load->view("admin/brand-edit.html",$data);
+	}
+
+	public function delete(){
+		$data=array(
+			"brand_id"=>$this->input->post('brand_id')
+		);
+		$this->load->model("BrandModel");
+		$result=$this->CategoryModel->delete_brand($data);
+		$obj=array("result"=>$result);
+		echo json_encode($obj);
+	}
+	public function addnew(){
+		$this->load->view("admin/brand-new.html");
 	}
 }

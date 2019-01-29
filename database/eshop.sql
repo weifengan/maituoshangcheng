@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : localhost
 Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : eshop
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-01-09 03:32:09
+Date: 2019-01-30 00:42:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,20 +81,24 @@ DROP TABLE IF EXISTS `brands`;
 CREATE TABLE `brands` (
   `brand_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '品牌ID',
   `brand_name` varchar(150) DEFAULT NULL COMMENT '品牌名称',
-  `brand_logo` varchar(150) DEFAULT NULL COMMENT '品牌logo',
+  `brand_logo` varchar(150) DEFAULT '/static/index/images/brand/no-logo.png' COMMENT '品牌logo',
   `brand_website` varchar(150) DEFAULT NULL COMMENT '品牌官网',
   `brand_recommend` tinyint(1) DEFAULT '0' COMMENT '是否推荐',
+  `create_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`brand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='品牌表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='品牌表';
 
 -- ----------------------------
 -- Records of brands
 -- ----------------------------
-INSERT INTO `brands` VALUES ('1', 'tdk', '/static/index/images/brand/tdk-logo.png', null, '0');
-INSERT INTO `brands` VALUES ('2', 'isnd', '/static/index/images/brand/isnd-logo.png', null, '0');
-INSERT INTO `brands` VALUES ('3', 'avx', '/static/index/images/brand/avx-logo.png', null, '0');
-INSERT INTO `brands` VALUES ('4', 'sitime', '/static/index/images/brand/sitime-logo.png', null, '0');
-INSERT INTO `brands` VALUES ('5', '优衣库', null, null, '0');
+INSERT INTO `brands` VALUES ('1', 'tdk2', '/static/index/images/brand/tdk-logo.png', 'http://www.baidu.com', '0', '2019-01-30 00:18:08');
+INSERT INTO `brands` VALUES ('2', 'isnd', '/static/index/images/brand/isnd-logo.png', 'http://www.xx.com', '0', '2019-01-29 23:08:58');
+INSERT INTO `brands` VALUES ('3', 'avx', '/static/index/images/brand/avx-logo.png', 'http://www.xx.com', '0', '2019-01-29 23:09:02');
+INSERT INTO `brands` VALUES ('4', 'sitime', '/static/index/images/brand/sitime-logo.png', 'http://www.xx.com', '0', '2019-01-29 23:09:06');
+INSERT INTO `brands` VALUES ('5', '优衣库', '/static/index/images/brand/sitime-logo.png', 'http://www.xx.com', '0', '2019-01-29 23:09:09');
+INSERT INTO `brands` VALUES ('6', 'aaa', '/static/index/images/brand/avx-logo.png', 'http://www.baidu.com', '0', '2019-01-30 00:35:40');
+INSERT INTO `brands` VALUES ('7', 'aaadddd', '', 'http://www.baidu.com', '0', '2019-01-30 00:40:54');
+INSERT INTO `brands` VALUES ('8', 'aaa', '/static/index/images/brand/avx-logo.png', 'dcdd', '0', '2019-01-30 00:37:07');
 
 -- ----------------------------
 -- Table structure for `category`
@@ -108,26 +112,27 @@ CREATE TABLE `category` (
   `cat_order` int(11) DEFAULT '0' COMMENT '分类排列顺序',
   `cat_enabled` tinyint(1) DEFAULT '0' COMMENT '是否启用',
   `createdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` tinyint(4) unsigned zerofill DEFAULT '0000',
   PRIMARY KEY (`cat_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='商品类别表';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '电阻', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('2', '电容', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('3', '集成电路', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('4', '电源', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('5', 'LED照明', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('6', '传感器', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('7', '压敏电阻', '1', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('8', '贴片电阻', '1', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('9', '陶瓷电容', '2', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('10', '钽电容', '2', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('11', '服装', '0', null, '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('12', '上衣', '11', null, '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('13', '裤子', '11', null, '0', '1', '2019-01-09 01:00:03');
-INSERT INTO `category` VALUES ('14', '外套', '11', null, '0', '1', '2019-01-09 01:00:03');
+INSERT INTO `category` VALUES ('1', '电阻', '0', 'icon-cateId-1208', '10', '1', '2019-01-14 23:59:31', '0001');
+INSERT INTO `category` VALUES ('2', '电容', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('3', '集成电路', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('4', '电源', '0', 'icon-cateId-1208', '0', '1', '2019-01-13 00:55:16', '0000');
+INSERT INTO `category` VALUES ('5', 'LED照明', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('6', '传感器', '0', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('7', '压敏电阻3', '1', 'icon-cateId-1208', '0', '1', '2019-01-14 23:11:23', '0000');
+INSERT INTO `category` VALUES ('8', '贴片电阻', '1', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('9', '陶瓷电容', '2', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('10', '钽电容', '2', 'icon-cateId-1208', '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('11', '服装', '0', null, '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('12', '上衣', '11', null, '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('13', '裤子', '11', null, '0', '1', '2019-01-09 01:00:03', '0000');
+INSERT INTO `category` VALUES ('14', '外套', '11', null, '0', '1', '2019-01-09 01:00:03', '0000');
 
 -- ----------------------------
 -- Table structure for `product`

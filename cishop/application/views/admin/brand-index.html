@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>迈拓恒科商城管理后台</title>
+<link rel="stylesheet" href="<?=base_url()?>/static/admin/css/myadmin.css">
+<link rel="stylesheet" href="<?=base_url()?>/static/admin/layui/css/layui.css">
+<link rel="stylesheet" href="<?=base_url()?>/static/admin/fontfaces/fonticon.css">
+<link rel="stylesheet" href="<?=base_url()?>/static/index/css/style.css">
+<style>
+  .page_title{
+    font-size: 18px;
+    padding:10px;
+    float:left;
+    padding-bottom: 12px;
+  }
+</style>
+</head>
+
+<body>
+   <div style="height:62px;display:block">
+   <div class="page_title"><i class="layui-icon layui-icon-face-smile" style="color: #1E9FFF;"></i> 品牌管理</div>
+   <div class="layui-btn-container" style="float:right;padding:15px;">
+     <button class="layui-btn layui-btn-sm" onclick="add_brand()">添加品牌</button>
+     <button class="layui-btn layui-btn-sm" onclick="delete_brand()">删除品牌</button>
+  </div>
+</div>
+
+ <table class="layui-hide" id="brandtable" lay-filter="brandtable" style="width:100%;"></table>
+
+
+ <script type="text/html" id="brand_logo">
+  <img src="{{d.brand_logo}}" />
+ </script>
+   <!--常用工具按钮-->
+  <script type="text/html" id="actionToolBar">
+
+  </script>
+
+  <script type="text/html" id="actionToolbar">
+    <a class="layui-btn layui-btn-xs"  lay-event="edit">  <i class="layui-icon layui-icon-edit"></i> 编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">  <i class="layui-icon layui-icon-delete"></i>删除</a>
+  </script>
+
+  <script type="text/html" id="brand_website">
+    <a href="{{d.brand_website}}" target="_blank">{{d.brand_website}} </a>
+  </script>
+
+<script src="<?=base_url()?>static/admin/layui/layui.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+var table;
+layui.use('table', function(){
+  table = layui.table;
+  $ = layui.$;
+  table.render({
+    elem: '#brandtable'
+    ,url:'<?=site_url()?>/api/brand/GetAll'
+    ,toolbar: '#actionToolBar'
+    ,title: '品牌管理'
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      ,{field:'brand_id', title:'ID', width:80, fixed: 'left'}
+      ,{field:'brand_name', title:'类别名称'}
+      ,{field:'brand_logo', title:'品牌LOGO',align:"center",width:300,templet:"#brand_logo"}
+      ,{field:'brand_website', title:'官网地址', templet: '#brand_website'}
+       ,{field:'create_datetime', title:'创建日期'}
+      ,{align:"center",title:'操作', toolbar: '#actionToolbar'}
+    ]]
+    ,page: true
+  });
+
+  //监听行工具事件
+  table.on('tool(brandtable)', function(obj){
+    var data = obj.data;
+
+    //console.log(obj)
+    if(obj.event === 'delete'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        var params={
+          cat_id:data.cat_id,
+          cat_delete:1
+        };
+        $.ajax({
+            type: 'POST',
+            url: '<?=site_url()?>/admin/brand/delete',
+            data: params,
+            dataType: 'json',
+            success: function (response) {
+              if(response.result==true){
+                layer.alert("删除类别OK",{icon:1},function(index){
+                  layer.close(index);
+                  location.reload();
+                });
+              }else{
+                layer.alert("删除类别失败!",{icon:1},function(index){
+                  layer.close(index);
+                  location.reload();
+                });
+              }
+            }
+          });
+       });
+    } else if(obj.event === 'edit'){
+      //编辑类别
+      layer.open({
+             type: 2,
+             title: "编辑品牌",
+             area: ['800px', '600px'],
+             content: '<?=site_url()?>/admin/brand/edit/' + data.brand_id,
+       });
+    }
+  });
+});
+
+
+function add_brand(){
+  layer.open({
+         type: 2,
+         title: "添加新类别",
+         area: ['800px', '600px'],
+         content: '<?=site_url()?>/admin/brand/addnew/',
+   });
+
+
+
+}
+function delete_brand(){
+  var checkStatus = table.checkStatus("brandtable");
+  var data = checkStatus.data;
+  layer.alert(JSON.stringify(data));
+
+}
+
+</script>
